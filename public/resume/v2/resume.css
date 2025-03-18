@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Noto Sans JP", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+button {
+    padding-left: 1mm;
+    padding-right: 1mm;
+}
+
+.page {
+    width: 210mm;
+    height: 297mm;
+    border: white solid 1px;
+    /* 囲わないと印刷範囲がおかしくなる (chrome 134.0.6998.88) */
+}
+
+.page-content {
+    margin-top: 18mm;
+    margin-left: 18mm;
+    width: 174mm;
+    height: 257mm;
+    position: relative;
+    /* border: green solid 1px; */
+}
+
+.resume-photo-img {
+    position: absolute;
+    right: 0;
+    width: 30mm;
+    height: 40mm;
+    /* border: black solid 1px; */
+}
+
+.resume-photo-img>img {
+    width: 30mm;
+    height: 40mm;
+}
+
+.page-content>section.panel .card>h1 {
+    position: absolute;
+    font-size: 18pt;
+    font-weight: 400;
+}
+
+.cell {
+    position: absolute;
+    font-size: 9pt;
+    font-weight: normal;
+    padding-left: 2mm;
+    padding-right: 2mm;
+    border-top: black solid 1px;
+    border-left: black solid 1px;
+}
+
+.resume-address-kana>div {
+    font-size: 8pt;
+}

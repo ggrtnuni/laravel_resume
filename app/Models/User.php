@@ -7,12 +7,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+/**
+ * ユーザモデル
+ * 
+ * @author laravel
+ */
+class User extends Authenticatable //implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
     /**
+     * 一括割り当て可能な属性
      * The attributes that are mass assignable.
      *
      * @var list<string>
@@ -24,6 +30,7 @@ class User extends Authenticatable
     ];
 
     /**
+     * シリアル化のために非表示にする必要がある属性
      * The attributes that should be hidden for serialization.
      *
      * @var list<string>
@@ -34,6 +41,7 @@ class User extends Authenticatable
     ];
 
     /**
+     * キャストする属性を取得
      * Get the attributes that should be cast.
      *
      * @return array<string, string>

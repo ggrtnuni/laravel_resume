@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>履歴書</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <link href="./print.css" rel="stylesheet" />
+    <link href="./resume.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+
+        <article class="resume">
+            <div class="page">
+                <div class="page-content">
+                    <div class="resume-photo-img" style="background-color: #DDD">
+                        <img src="/sample/images/20250313-id-photo.jpg" alt="id photo" />
+                    </div>
+
+                    <section class="panel resume-info-meta">
+                        <div class="card resume-title">
+                            <h1>履歴書</h1>
+                        </div>
+                        <div class="card resume-date">
+                            <div>
+                                -
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="panel resume-info-general">
+                        <div class="card resume-name-kana">
+                            <h2>ふりがな</h2>
+                            <div>-</div>
+                        </div>
+                        <div class="card resume-name">
+                            <h2>氏名</h2>
+                            <div>-</div>
+                        </div>
+                        <div class="card resume-gender">
+                            <h2>性別</h2>
+                            <div>-</div>
+                        </div>
+                        <div class="card resume-birthday">
+                            <h2>生年月日</h2>
+                            <div>-</div>
+                        </div>
+                        <div class="card resume-address-kana">
+                            <h2>ふりがな</h2>
+                            <div>-</div>
+                        </div>
+                        <div class="card resume-address">
+                            <h2>現住所</h2>
+                            <div>
+                                -
+                            </div>
+                        </div>
+                        <div class="card resume-email">
+                            <h2>E-mail</h2>
+                            <div>-</div>
+                        </div>
+                        <div class="card resume-tel">
+                            <h2>自宅電話</h2>
+                            <div>-</div>
+                        </div>
+                        <div class="card resume-mobile">
+                            <h2>携帯電話</h2>
+                            <div>-</div>
+                        </div>
+                        <div class="card resume-contact-address-kana" hidden>
+                            <h2>ふりがな</h2>
+                            <div>-</div>
+                        </div>
+                        <div class="card resume-contact-address" hidden>
+                            <h2>連絡先</h2>
+                            <div>-</div>
+                        </div>
+                        <div class="card resume-contact-tel" hidden>
+                            <h2>連絡先電話</h2>
+                            <div>-</div>
+                        </div>
+                    </section>
+
+                    <section class="panel resume-info-history">
+                        <div class="table resume-history">
+                            <div class="table-header">
+                                <div class="resume-year">年</div>
+                                <div class="resume-month">月</div>
+                                <div class="resume-text">学歴・職歴</div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <div class="page">
+                <div class="page-content">
+                    <section class="panel resume-info-license">
+                        <div class="table resume-license">
+                            <div class="table-header">
+                                <div class="resume-year">年</div>
+                                <div class="resume-month">月</div>
+                                <div class="resume-text">免許・資格</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="panel resume-info-motivation">
+                        <div class="card resume-motivation">
+                            <h2>志望の動機、特技、好きな学科、アピールポイントなど</h2>
+                            <div>-</div>
+                        </div>
+                    </section>
+
+                    <section class="panel resume-info-wish">
+                        <div class="card resume-wish">
+                            <h2>本人希望記入欄（特に給料・職種・勤務時間・勤務地・その他についての希望などがあれば記入）</h2>
+                            <div>-</div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </article>
+
+        <div class="no-print control" style="padding-top: 18mm;">
+            コントロール
+            <div style="font-size: 9pt;margin-bottom: 6mm;">
+                <div>
+                    （コントロールは印刷されません）
+                </div>
+                <hr />
+                <div style="font-size: 9pt;margin-bottom: 6mm;">
+                    <button onclick="print()">印刷</button>
+                    <button>保存</button>
+                    <button>読込</button>
+                    <button>消去</button>
+                </div>
+                <hr />
+                <div style="font-size: 9pt;margin-bottom: 6mm;">
+                    <div>
+                        <div><label for="resume-gender">年表記</label></div>
+                        <div>
+                            <input type="radio" name="resume-calender" value="1" id="resume-calender-en" checked />
+                            <label for="resume-calender-en">西暦</label>
+                            &nbsp;
+                            <input type="radio" name="resume-calender" value="2" id="resume-calender-jp" />
+                            <label for="resume-calender-jp">和暦</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div><label for="resume-gender">連絡先</label></div>
+                        <div>
+                            <input type="checkbox" name="resume-contact" value="1" id="resume-contact" checked />
+                            <label for="resume-contact">表示する</label>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div>
+                    <div><label for="resume-name-kana">氏名ふりがな</label></div>
+                    <div><input type="text" id="resume-name-kana" /></div>
+                </div>
+                <div>
+                    <div><label for="resume-name">氏名</label></div>
+                    <div><input type="text" id="resume-name" /></div>
+                </div>
+                <div>
+                    <div><label for="resume-gender">性別</label></div>
+                    <div>
+                        <input type="radio" name="resume-gender" value="0" id="resume-gender-0" />
+                        <label for="resume-gender-0">未回答</label>
+                        &nbsp;
+                        <input type="radio" name="resume-gender" value="1" id="resume-gender-1" checked />
+                        <label for="resume-gender-1">男</label>
+                        &nbsp;
+                        <input type="radio" name="resume-gender" value="2" id="resume-gender-2" />
+                        <label for="resume-gender-2">女</label>
+                    </div>
+                </div>
+                <div>
+                    <div><label for="resume-birthday">生年月日</label></div>
+                    <div><input type="text" id="resume-birthday" /></div>
+                </div>
+                <div>
+                    <div><label for="resume-address-kana">住所ふりがな</label></div>
+                    <div><input type="text" id="resume-address-kana" /></div>
+                </div>
+                <div>
+                    <div><label for="resume-address">郵便番号</label></div>
+                    <div><input type="text" id="resume-postal-code" /></div>
+                </div>
+                <div>
+                    <div><label for="resume-address">住所</label></div>
+                    <div><input type="text" id="resume-address" /></div>
+                </div>
+                <div>
+                    <div><label for="resume-email">E-mail</label></div>
+                    <div><input type="text" id="resume-email" /></div>
+                </div>
+                <div>
+                    <div><label for="resume-tel">自宅電話</label></div>
+                    <div><input type="text" id="resume-tel" /></div>
+                </div>
+                <div>
+                    <div><label for="resume-mobile">携帯電話</label></div>
+                    <div><input type="text" id="resume-mobile" /></div>
+                </div>
+            </div>
+
+            <div style="font-size: 9pt;margin-bottom: 6mm;">
+                <div>
+                    <div><label for="resume-history">学歴・職歴</label></div>
+                    <div>
+                        <div style="display: inline-flex;">
+                            <input type="text" style="width: 10mm" />
+                            <input type="text" style="width: 10mm" />
+                            <input type="text" style="width: 30mm" />
+                            <button>x</button>
+                            <button>↑</button>
+                            <button>↓</button>
+                        </div>
+                        <div style="display: inline-flex;">
+                            <input type="text" style="width: 10mm" />
+                            <input type="text" style="width: 10mm" />
+                            <input type="text" style="width: 30mm" />
+                            <button>x</button>
+                            <button>↑</button>
+                            <button>↓</button>
+                        </div>
+                        <div>
+                            <button>+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="font-size: 9pt;margin-bottom: 6mm;">
+                <div>
+                    <div><label for="resume-history">免許・資格</label></div>
+                    <div>
+                        <div style="display: inline-flex;">
+                            <input type="text" style="width: 10mm" />
+                            <input type="text" style="width: 10mm" />
+                            <input type="text" style="width: 30mm" />
+                            <button>x</button>
+                            <button>↑</button>
+                            <button>↓</button>
+                        </div>
+                        <div style="display: inline-flex;">
+                            <input type="text" style="width: 10mm" />
+                            <input type="text" style="width: 10mm" />
+                            <input type="text" style="width: 30mm" />
+                            <button>x</button>
+                            <button>↑</button>
+                            <button>↓</button>
+                        </div>
+                        <div>
+                            <button>+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="font-size: 9pt;margin-bottom: 6mm;">
+                <div>
+                    <div><label for="resume-motivation">志望動機</label></div>
+                    <div> <textarea rows="20" cols="25"></textarea></div>
+                </div>
+            </div>
+
+            <div style="font-size: 9pt;margin-bottom: 6mm;">
+                <div>
+                    <div><label for="resume-wish">本人希望記入欄</label></div>
+                    <div> <textarea rows="20" cols="25"></textarea></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="module">
+        import { message, sayHello, applyLayout, fetchJSON } from './resume.js';
+        console.log(message);
+        sayHello('World');
+
+        const jsonURL = '/sample/data/resume-v2.json';
+        fetchJSON(jsonURL)
+            .then(jsonData => {
+                if (jsonData) {
+                    document.querySelectorAll('.page-content').forEach(pageContent => {
+                        applyLayout(pageContent, jsonData);
+                    })
+                }
+            });
+
+    </script>
+</body>
+
+</html>
+
+<body>
