@@ -1,0 +1,215 @@
+{
+    "type": "object",
+    "properties": {
+        "resumeDate": {
+            "type": "string",
+            "format": "date",
+            "description": "履歴書作成日"
+        },
+        "resumeNameKana": {
+            "type": "string",
+            "description": "氏名（カナ）"
+        },
+        "resumeName": {
+            "type": "string",
+            "description": "氏名"
+        },
+        "resumeGender": {
+            "type": "string",
+            "enum": [
+                "1",
+                "2",
+                "9"
+            ],
+            "description": "性別 (例: 1=男性, 2=女性, 9=その他)"
+        },
+        "resumeBirthday": {
+            "type": "string",
+            "format": "date",
+            "description": "生年月日"
+        },
+        "resumePostalcode": {
+            "type": "string",
+            "pattern": "^\\d{3}-\\d{4}$",
+            "description": "郵便番号"
+        },
+        "resumeAddressKana": {
+            "type": "string",
+            "description": "住所（カナ）"
+        },
+        "resumeAddress": {
+            "type": "string",
+            "description": "住所"
+        },
+        "resumeEmail": {
+            "type": "string",
+            "format": "email",
+            "description": "メールアドレス"
+        },
+        "resumeTel": {
+            "type": "string",
+            "description": "電話番号 (任意)"
+        },
+        "resumeMobile": {
+            "type": "string",
+            "pattern": "^0\\d{1,4}-\\d{1,4}-\\d{4}$",
+            "description": "携帯電話番号"
+        },
+        "resumeContactPostalcode": {
+            "type": "string",
+            "pattern": "^\\d{3}-\\d{4}$",
+            "description": "連絡先 郵便番号 (任意)"
+        },
+        "resumeContactAddressKana": {
+            "type": "string",
+            "description": "連絡先 住所（カナ） (任意)"
+        },
+        "resumeContactAddress": {
+            "type": "string",
+            "description": "連絡先 住所 (任意)"
+        },
+        "resumeContactTel": {
+            "type": "string",
+            "pattern": "^0\\d{1,4}-\\d{1,4}-\\d{4}$",
+            "description": "連絡先 電話番号 (任意)"
+        },
+        "resumeHistory": {
+            "type": "object",
+            "properties": {
+                "rows": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "resume-year": {
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ],
+                                "description": "年 (西暦)"
+                            },
+                            "resume-month": {
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ],
+                                "minimum": 1,
+                                "maximum": 12,
+                                "description": "月"
+                            },
+                            "resume-text": {
+                                "type": "string",
+                                "description": "内容"
+                            },
+                            "right": {
+                                "type": [
+                                    "boolean",
+                                    "null"
+                                ],
+                                "description": "右寄せフラグ (任意)"
+                            }
+                        },
+                        "required": [
+                            "resume-year",
+                            "resume-month",
+                            "resume-text"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "rows"
+            ]
+        },
+        "resumeLicense": {
+            "type": "object",
+            "properties": {
+                "rows": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "resume-year": {
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ],
+                                "description": "年 (西暦)"
+                            },
+                            "resume-month": {
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ],
+                                "minimum": 1,
+                                "maximum": 12,
+                                "description": "月"
+                            },
+                            "resume-text": {
+                                "type": "string",
+                                "description": "内容"
+                            },
+                            "right": {
+                                "type": [
+                                    "boolean",
+                                    "null"
+                                ],
+                                "description": "右寄せフラグ (任意)"
+                            }
+                        },
+                        "required": [
+                            "resume-year",
+                            "resume-month",
+                            "resume-text"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "rows"
+            ]
+        },
+        "resumeMotivation": {
+            "type": "string",
+            "description": "志望動機"
+        },
+        "resumeWish": {
+            "type": "string",
+            "description": "本人希望記入欄"
+        },
+        "resumeCalender": {
+            "type": "string",
+            "enum": [
+                "jp"
+            ],
+            "description": "カレンダーの種類 (例: jp=日本語)"
+        },
+        "resumeContact": {
+            "type": "boolean",
+            "description": "連絡希望フラグ"
+        },
+        "resumeSaveFilename": {
+            "type": "string",
+            "description": "保存ファイル名"
+        }
+    },
+    "required": [
+        "resumeDate",
+        "resumeNameKana",
+        "resumeName",
+        "resumeGender",
+        "resumeBirthday",
+        "resumePostalcode",
+        "resumeAddressKana",
+        "resumeAddress",
+        "resumeEmail",
+        "resumeMobile",
+        "resumeHistory",
+        "resumeLicense",
+        "resumeMotivation",
+        "resumeWish",
+        "resumeCalender",
+        "resumeContact",
+        "resumeSaveFilename"
+    ]
+}

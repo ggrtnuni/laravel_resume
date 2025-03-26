@@ -5,1018 +5,167 @@
     <title>履歴書</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
-
-    <style>
-        /* A4サイズ 横210mm 縦297mm */
-
-        /* 印刷時のスタイル */
-        @media print {
-            @page {
-                size: A4;
-                /* margin: 20mm; */
-                /* 余白を設定 */
-            }
-
-            /* 印刷時に不要な要素を非表示 */
-            .no-print {
-                display: none;
-            }
-
-            .page-break {
-                page-break-after: always;
-                /* ページを区切る */
-            }
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            /* ボーダー幅を含んだボックスサイズにする */
-        }
-
-        /* 通常の画面表示用スタイル */
-        body {
-            /* line-height: 1.6; */
-            /* font-family: "Noto Sans Japanese"; */
-            font-family: "Noto Sans JP", sans-serif;
-            font-optical-sizing: auto;
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        .page {
-            width: 210mm;
-            height: 297mm;
-            border: white solid 1px;
-            /* 囲わないと印刷範囲がおかしくなる (chrome 134.0.6998.88) */
-        }
-
-        .page-content {
-            margin-top: 18mm;
-            margin-left: 18mm;
-            width: 174mm;
-            height: 257mm;
-            position: relative;
-            /* border: green solid 1px; */
-        }
-
-        .page-content>div {
-            position: absolute;
-            font-size: 9pt;
-        }
-
-        .text-left {
-            text-align: left;
-            padding-left: 2mm;
-        }
-
-        .text-right {
-            text-align: right;
-            padding-right: 2mm;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .nowrap {
-            white-space: nowrap;
-        }
-
-        .resume-photo-img {
-            position: absolute;
-            right: 0;
-            width: 30mm;
-            height: 40mm;
-            /* border: black solid 1px; */
-        }
-
-        .resume-photo-img>img {
-            width: 30mm;
-            height: 40mm;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-        }
-
-        button {
-            padding-left: 1mm;
-            padding-right: 1mm;
-        }
-    </style>
+    <link href="./print.css" rel="stylesheet" />
+    <link href="./resume.css" rel="stylesheet" />
 </head>
 
 <body>
     <div class="container">
 
-        <div class="resume">
-            <!-- 1ページ目 -->
-            <div class="page page-break">
+        <article class="resume">
+            <div class="page">
                 <div class="page-content">
-                    <!-- タイトル -->
-                    <div class="resume-title">履歴書</div>
+                    <div class="resume-photo-img"></div>
 
-                    <!-- 記載日 -->
-                    <div class="resume-date text-right">
-                        -
-                    </div>
+                    <section class="panel resume-info-meta">
+                        <h1 class="resume-title">履歴書</h1>
+                        <div x-text="resumeDateText" class="resume-date">
+                            <span style="color:white;">　　</span>
+                            年
+                            <span style="color:white;">　　</span>
+                            月
+                            <span style="color:white;">　　</span>
+                            日
+                            現在
+                        </div>
+                    </section>
 
-                    <!-- 写真 -->
-                    <div class="resume-photo-img" style="background-color: #DDD">
-                        <img src="/sample/images/20250313-id-photo.jpg" alt="id photo" />
-                    </div>
+                    <section class="panel resume-info-general">
+                        <div class="card resume-name-kana">
+                            <h2>ふりがな</h2>
+                            <div></div>
+                        </div>
+                        <div class="card resume-name">
+                            <h2>氏名</h2>
+                            <div></div>
+                        </div>
+                        <div class="card resume-gender">
+                            <h2>性別</h2>
+                            <div></div>
+                        </div>
+                        <div class="card resume-birthday">
+                            <h2>生年月日</h2>
+                            <div></div>
+                        </div>
+                        <div class="card resume-address-kana">
+                            <h2>ふりがな</h2>
+                            <div></div>
+                        </div>
+                        <div class="card resume-address">
+                            <h2>現住所</h2>
+                            <div class="pre-like"></div>
+                        </div>
+                        <div class="card resume-email">
+                            <h2>E-mail</h2>
+                            <div></div>
+                        </div>
+                        <div class="card resume-tel">
+                            <h2>自宅電話</h2>
+                            <div></div>
+                        </div>
+                        <div class="card resume-mobile">
+                            <h2>携帯電話</h2>
+                            <div></div>
+                        </div>
+                        <div class="card resume-contact-address-kana">
+                            <h2>ふりがな</h2>
+                            <div></div>
+                        </div>
+                        <div class="card resume-contact-address">
+                            <h2>連絡先</h2>
+                            <div class="pre-like"></div>
+                        </div>
+                        <div class="card resume-contact-tel">
+                            <h2>連絡先電話</h2>
+                            <div></div>
+                        </div>
+                    </section>
 
-                    <!-- ふりがなタイトル、ふりがな、性別タイトル -->
-                    <div class="resume-name-kana-title">
-                        <span class="text-left">ふりがな</span>
-                    </div>
-                    <div class="resume-name-kana text-center">
-                        <span>-</span>
-                    </div>
-                    <div class="resume-gender-title">
-                        <span>性別</span>
-                    </div>
-
-                    <!-- 氏名タイトル、氏名、性別 -->
-                    <div class="resume-name-title text-left">
-                        <span>氏　　名</span>
-                    </div>
-                    <div class="resume-name text-center" style="padding-top:2mm;font-size:12pt;">
-                        <span style="font-size:12pt;">-</span>
-                    </div>
-                    <div class="resume-gender text-center" style="padding-top:3mm;">
-                        <span>-</span>
-                    </div>
-
-                    <!-- 生年月日タイトル、生年月日 -->
-                    <div class="resume-birthday-title text-left">
-                        生年月日
-                    </div>
-                    <div class="resume-birthday text-left">
-                        -
-                    </div>
-
-                    <!-- ふりがなタイトル、ふりがな、自宅電話タイトル -->
-                    <div class="resume-addr-kana-title">
-                        <span class="text-left">ふりがな</span>
-                    </div>
-                    <div class="resume-addr-kana text-left nowrap">
-                        <span class="nowrap">-</span>
-                    </div>
-                    <div class="resume-tel-title text-center">
-                        <span>自宅電話</span>
-                    </div>
-
-                    <!-- 住所タイトル、住所、自宅電話、携帯電話タイトル -->
-                    <div class="resume-addr-title text-left">
-                        <span>現</span><span style="padding-left:.44em;">住</span><span
-                            style="padding-left:.44em;">所</span>
-                    </div>
-                    <div class="resume-addr text-left">
-                        -
-                    </div>
-                    <div class="resume-tel text-left">
-                        <span>-</span>
-                    </div>
-                    <div class="resume-mobile-title text-center">
-                        <span>携帯電話</span>
-                    </div>
-
-                    <!-- E-mail タイトル、E-mail、携帯番号 -->
-                    <div class="resume-email-title text-left">
-                        <span>E-mail</span>
-                    </div>
-                    <div class="resume-email text-left">
-                        <span>-</span>
-                    </div>
-                    <div class="resume-mobile text-left">
-                        <span>-</span>
-                    </div>
-
-                    <!-- 空行 -->
-
-                    <!-- 年、月、学歴・職歴 -->
-                    <div class="resume-history-year-title text-center">
-                        <span>年</span>
-                    </div>
-                    <div class="resume-history-month-title text-center">
-                        <span>月</span>
-                    </div>
-                    <div class="resume-history-text-title text-center">
-                        <span>学歴・職歴</span>
-                    </div>
-
-                    <!-- 学歴 -->
-                    <div class="resume-history-year-academic-title">
-                        <span>&nbsp;</span>
-                    </div>
-                    <div class="resume-history-month-academic-title">
-                        <span>&nbsp;</span>
-                    </div>
-                    <div class="resume-history-text-academic-title text-left">
-                        <span>学歴</span>
-                    </div>
-
-                    <!-- 学歴（動的) -->
-
-                    <!-- 職歴 -->
-                    <div class="resume-history-year-work-title">
-                        <span>&nbsp;</span>
-                    </div>
-                    <div class="resume-history-month-work-title">
-                        <span>&nbsp;</span>
-                    </div>
-                    <div class="resume-history-text-work-title text-left">
-                        <span>職歴</span>
-                    </div>
-
-                    <!-- 職歴（動的）-->
-
+                    <section class="panel resume-info-history">
+                        <div class="table resume-history">
+                            <div class="table-header">
+                                <div class="resume-year">年</div>
+                                <div class="resume-month">月</div>
+                                <div class="resume-text">学歴・職歴</div>
+                            </div>
+                            <div class="table-body"></div>
+                        </div>
+                    </section>
                 </div>
-
             </div>
 
-            <!-- 最後のページ -->
-            <div class=" page">
+            <div class="page">
                 <div class="page-content">
-                    <!-- 年、月、免許・資格 -->
-                    <div class="resume-license-year-title text-center">
-                        <span>年</span>
-                    </div>
-                    <div class="resume-license-month-title text-center">
-                        <span>月</span>
-                    </div>
-                    <div class="resume-license-text-title text-center">
-                        <span>免許・資格</span>
-                    </div>
+                    <section class="panel resume-info-license">
+                        <div class="table resume-license">
+                            <div class="table-header">
+                                <div class="resume-year">年</div>
+                                <div class="resume-month">月</div>
+                                <div class="resume-text">免許・資格</div>
+                            </div>
+                            <div class="table-body"></div>
+                        </div>
+                    </section>
 
-                    <!-- 免許・資格（動的）-->
+                    <section class="panel resume-info-motivation">
+                        <div class="card resume-motivation">
+                            <h2>志望の動機、特技、好きな学科、アピールポイントなど</h2>
+                            <div class="pre-like"></div>
+                        </div>
+                    </section>
 
-                    <!-- 空行 -->
-
-                    <!-- 通勤時間タイトル、通勤時間、扶養家族数タイトル、配偶者タイトル、配偶者の扶養義務タイトル -->
-
-                    <!-- 最寄り駅タイトル、扶養家族数、配偶者、配偶者の扶養義務 -->
-
-                    <!-- 志望動機タイトル -->
-                    <div class="resume-motivation-title text-left">
-                        <span>志望の動機、特技、好きな学科、アピールポイントなど</span>
-                    </div>
-
-                    <!-- 志望の動機、特技、好きな学科、アピールポイントなど -->
-                    <div class="resume-motivation text-left">
-                        <span>&nbsp;</span>
-                    </div>
-
-                    <!-- 空行 -->
-
-                    <!-- 本人希望記入欄タイトル -->
-                    <div class="resume-wish-title text-left">
-                        <span>本人希望記入欄（特に給料・職種・勤務時間・勤務地・その他についての希望などがあれば記入）</span>
-                    </div>
-
-                    <!-- 本人希望記入欄（特に給料・職種・勤務時間・勤務地・その他についての希望などがあれば記入） -->
-                    <div class="resume-wish text-left">
-                        <span>&nbsp;</span>
-                    </div>
+                    <section class="panel resume-info-wish">
+                        <div class="card resume-wish">
+                            <h2>本人希望記入欄（特に給料・職種・勤務時間・勤務地・その他についての希望などがあれば記入）</h2>
+                            <div class="pre-like"></div>
+                        </div>
+                    </section>
                 </div>
             </div>
-        </div>
-
-        <div class="no-print control" style="padding-top: 18mm;">
-            コントロール
-            <div style="font-size: 9pt;margin-bottom: 6mm;">
-                <div>
-                    （コントロールは印刷されません）
-                </div>
-                <hr />
-                <div style="font-size: 9pt;margin-bottom: 6mm;">
-                    <button onclick="print()">印刷</button>
-                    <button>保存</button>
-                    <button>読込</button>
-                    <button>消去</button>
-                </div>
-                <hr />
-                <div style="font-size: 9pt;margin-bottom: 6mm;">
-                    <div>
-                        <div><label for="resume-gender">年表記</label></div>
-                        <div>
-                            <input type="radio" name="resume-calender" value="1" id="resume-calender-en" checked />
-                            <label for="resume-calender-en">西暦</label>
-                            &nbsp;
-                            <input type="radio" name="resume-calender" value="2" id="resume-calender-jp" />
-                            <label for="resume-calender-jp">和暦</label>
-                        </div>
-                    </div>
-                    <div>
-                        <div><label for="resume-gender">連絡先</label></div>
-                        <div>
-                            <input type="checkbox" name="resume-contact" value="1" id="resume-contact" checked />
-                            <label for="resume-contact">表示する</label>
-                        </div>
-                    </div>
-                </div>
-                <hr />
-                <div>
-                    <div><label for="resume-name-kana">氏名ふりがな</label></div>
-                    <div><input type="text" id="resume-name-kana" /></div>
-                </div>
-                <div>
-                    <div><label for="resume-name">氏名</label></div>
-                    <div><input type="text" id="resume-name" /></div>
-                </div>
-                <div>
-                    <div><label for="resume-gender">性別</label></div>
-                    <div>
-                        <input type="radio" name="resume-gender" value="0" id="resume-gender-0" />
-                        <label for="resume-gender-0">未回答</label>
-                        &nbsp;
-                        <input type="radio" name="resume-gender" value="1" id="resume-gender-1" checked />
-                        <label for="resume-gender-1">男</label>
-                        &nbsp;
-                        <input type="radio" name="resume-gender" value="2" id="resume-gender-2" />
-                        <label for="resume-gender-2">女</label>
-                    </div>
-                </div>
-                <div>
-                    <div><label for="resume-birthday">生年月日</label></div>
-                    <div><input type="text" id="resume-birthday" /></div>
-                </div>
-                <div>
-                    <div><label for="resume-address-kana">住所ふりがな</label></div>
-                    <div><input type="text" id="resume-address-kana" /></div>
-                </div>
-                <div>
-                    <div><label for="resume-address">郵便番号</label></div>
-                    <div><input type="text" id="resume-postal-code" /></div>
-                </div>
-                <div>
-                    <div><label for="resume-address">住所</label></div>
-                    <div><input type="text" id="resume-address" /></div>
-                </div>
-                <div>
-                    <div><label for="resume-email">E-mail</label></div>
-                    <div><input type="text" id="resume-email" /></div>
-                </div>
-                <div>
-                    <div><label for="resume-tel">自宅電話</label></div>
-                    <div><input type="text" id="resume-tel" /></div>
-                </div>
-                <div>
-                    <div><label for="resume-mobile">携帯電話</label></div>
-                    <div><input type="text" id="resume-mobile" /></div>
-                </div>
-            </div>
-
-            <div style="font-size: 9pt;margin-bottom: 6mm;">
-                <div>
-                    <div><label for="resume-history">学歴・職歴</label></div>
-                    <div>
-                        <div style="display: inline-flex;">
-                            <input type="text" style="width: 10mm" />
-                            <input type="text" style="width: 10mm" />
-                            <input type="text" style="width: 30mm" />
-                            <button>x</button>
-                            <button>↑</button>
-                            <button>↓</button>
-                        </div>
-                        <div style="display: inline-flex;">
-                            <input type="text" style="width: 10mm" />
-                            <input type="text" style="width: 10mm" />
-                            <input type="text" style="width: 30mm" />
-                            <button>x</button>
-                            <button>↑</button>
-                            <button>↓</button>
-                        </div>
-                        <div>
-                            <button>+</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="font-size: 9pt;margin-bottom: 6mm;">
-                <div>
-                    <div><label for="resume-history">免許・資格</label></div>
-                    <div>
-                        <div style="display: inline-flex;">
-                            <input type="text" style="width: 10mm" />
-                            <input type="text" style="width: 10mm" />
-                            <input type="text" style="width: 30mm" />
-                            <button>x</button>
-                            <button>↑</button>
-                            <button>↓</button>
-                        </div>
-                        <div style="display: inline-flex;">
-                            <input type="text" style="width: 10mm" />
-                            <input type="text" style="width: 10mm" />
-                            <input type="text" style="width: 30mm" />
-                            <button>x</button>
-                            <button>↑</button>
-                            <button>↓</button>
-                        </div>
-                        <div>
-                            <button>+</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="font-size: 9pt;margin-bottom: 6mm;">
-                <div>
-                    <div><label for="resume-motivation">志望動機</label></div>
-                    <div> <textarea rows="20" cols="25"></textarea></div>
-                </div>
-            </div>
-
-            <div style="font-size: 9pt;margin-bottom: 6mm;">
-                <div>
-                    <div><label for="resume-wish">本人希望記入欄</label></div>
-                    <div> <textarea rows="20" cols="25"></textarea></div>
-                </div>
-            </div>
-
-        </div>
-
+        </article>
     </div>
 
-
     <script>
-        async function fetchJSON(url) {
-            try {
-                const response = await fetch(url);
+        window.addEventListener('load', (ev) => {
+            let tableBody;
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+            // 学歴・職歴
+            tableBody = document.querySelector('.resume-history .table-body');
+            for (let i = 0; i < 26; i++) {
+                const row = document.createElement('div');
+                row.classList.add('row');
 
-                const data = await response.json();
-                return data;
-            } catch (error) {
-                console.error('JSONファイルの取得に失敗しました:', error);
-                return null; // またはエラーハンドリングに応じた値を返す
-            }
-        }
-
-        (function () {
-            const jsonURL = '/sample/data/resume-v1.json';
-            fetchJSON(jsonURL)
-                .then(data => {
-                    if (data) {
-                        console.log(data)
-                        document.querySelector('.resume-date').innerText = data.wroteDate;
-                        document.querySelector('.resume-name-kana').innerText = data.kana;
-                        document.querySelector('.resume-name').innerText = data.name;
-                        document.querySelector('.resume-gender').innerText = data.gender;
-                        document.querySelector('.resume-birthday').innerText = data.birthday;
-                        document.querySelector('.resume-addr-kana').innerText = data.addrKana;
-                        document.querySelector('.resume-addr').innerHTML = data.addr[0] + '<br />' + data.addr[1];
-                        document.querySelector('.resume-mobile').innerText = data.mobile;
-                        document.querySelector('.resume-email').innerText = data.email;
-
-                        const contentWidth = 174;
-                        const titleWidth = 138;
-                        const lineHeight = 6;
-                        const nameWidth = 102;
-                        const nameTitleWidth = 24;
-                        const monthWidth = 12;
-                        const historyMaxCount = 27; // １行 lineHeight mm とした場合丁度いい行数
-                        const licenseMaxCount = 8;
-                        // const lineMaxCount = 42; // １行 lineHeight mm とした場合
-
-                        var elem, parent, topOffset = 0, leftOffset = 0;
-                        // タイトル
-                        elem = document.querySelector('.resume-title');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.width = titleWidth + 'mm';
-                        elem.style.height = (lineHeight * 2) + 'mm';
-                        elem.style['font-size'] = '18pt';
-                        elem.style['font-weight'] = 400;
-
-                        // 日付
-                        topOffset += lineHeight * 2;
-                        elem = document.querySelector('.resume-date');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.width = titleWidth + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-
-                        // ふりがなタイトル
-                        topOffset += lineHeight;
-                        leftOffset = 0;
-                        elem = document.querySelector('.resume-name-kana-title');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = nameTitleWidth + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 2px';
-                        elem.style['border-left'] = 'black solid 2px';
-                        // ふりがな
-                        leftOffset += nameTitleWidth;
-                        elem = document.querySelector('.resume-name-kana');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = nameWidth + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 2px';
-                        // 性別タイトル
-                        leftOffset += nameWidth;
-                        elem = document.querySelector('.resume-gender-title');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = (titleWidth - nameWidth - nameTitleWidth) + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['text-align'] = 'center';
-                        elem.style['border-top'] = 'black solid 2px';
-                        elem.style['border-left'] = 'black solid 1px';
-                        elem.style['border-right'] = 'black solid 2px';
-
-                        // 氏名タイトル
-                        topOffset += lineHeight;
-                        leftOffset = 0;
-                        elem = document.querySelector('.resume-name-title');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = nameWidth + 'mm';
-                        elem.style.height = (lineHeight * 2) + 'mm';
-                        elem.style['border-top'] = 'black dashed 1px';
-                        elem.style['border-left'] = 'black solid 2px';
-                        // 氏名
-                        leftOffset += nameTitleWidth;
-                        elem = document.querySelector('.resume-name');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = nameWidth + 'mm';
-                        elem.style.height = (lineHeight * 2) + 'mm';
-                        elem.style['border-top'] = 'black dashed 1px';
-                        // 性別
-                        leftOffset += nameWidth;
-                        elem = document.querySelector('.resume-gender');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = (titleWidth - nameWidth - nameTitleWidth) + 'mm';
-                        elem.style.height = (lineHeight * 2) + 'mm';
-                        elem.style['border-top'] = 'black solid 1px';
-                        elem.style['border-left'] = 'black solid 1px';
-                        elem.style['border-right'] = 'black solid 2px';
-
-                        // 生年月日タイトル
-                        topOffset += lineHeight * 2;
-                        leftOffset = 0;
-                        elem = document.querySelector('.resume-birthday-title');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = nameWidth + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 1px';
-                        elem.style['border-left'] = 'black solid 2px';
-                        // 生年月日
-                        leftOffset += nameTitleWidth;
-                        elem = document.querySelector('.resume-birthday');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = (titleWidth - nameTitleWidth) + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 1px';
-                        elem.style['border-left'] = 'black solid 1px';
-                        elem.style['border-right'] = 'black solid 2px';
-
-                        // ふりがなタイトル
-                        topOffset += lineHeight;
-                        leftOffset = 0;
-                        elem = document.querySelector('.resume-addr-kana-title');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = nameTitleWidth + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 1px';
-                        elem.style['border-left'] = 'black solid 2px';
-                        // ふりがな
-                        leftOffset += nameTitleWidth;
-                        elem = document.querySelector('.resume-addr-kana');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = (titleWidth - nameTitleWidth) + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 1px';
-                        elem.style['font-size'] = '8pt';
-                        // 自宅電話タイトル
-                        leftOffset += (titleWidth - nameTitleWidth);
-                        elem = document.querySelector('.resume-tel-title');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = (contentWidth - (titleWidth - nameTitleWidth) - nameTitleWidth) + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 2px';
-                        elem.style['border-left'] = 'black solid 1px';
-                        elem.style['border-right'] = 'black solid 2px';
-
-                        // 住所タイトル
-                        topOffset += lineHeight;
-                        leftOffset = 0;
-                        elem = document.querySelector('.resume-addr-title');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = nameWidth + 'mm';
-                        elem.style.height = (lineHeight * 2) + 'mm';
-                        elem.style['border-top'] = 'black dashed 1px';
-                        elem.style['border-left'] = 'black solid 2px';
-                        // 住所
-                        leftOffset += nameTitleWidth;
-                        elem = document.querySelector('.resume-addr');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = (titleWidth - nameTitleWidth) + 'mm';
-                        elem.style.height = (lineHeight * 2) + 'mm';
-                        elem.style['border-top'] = 'black dashed 1px';
-                        // 自宅電話
-                        leftOffset += (titleWidth - nameTitleWidth);
-                        elem = document.querySelector('.resume-tel');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = (contentWidth - (titleWidth - nameTitleWidth) - nameTitleWidth) + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 1px';
-                        elem.style['border-left'] = 'black solid 1px';
-                        elem.style['border-right'] = 'black solid 2px';
-                        // 携帯電話タイトル
-                        topOffset += lineHeight;
-                        elem = document.querySelector('.resume-mobile-title');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = (contentWidth - (titleWidth - nameTitleWidth) - nameTitleWidth) + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 1px';
-                        elem.style['border-left'] = 'black solid 1px';
-                        elem.style['border-right'] = 'black solid 2px';
-
-                        // E-mail タイトル
-                        topOffset += lineHeight;
-                        leftOffset = 0;
-                        elem = document.querySelector('.resume-email-title');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = nameWidth + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 1px';
-                        elem.style['border-left'] = 'black solid 2px';
-                        elem.style['border-bottom'] = 'black solid 2px';
-                        // E-mail
-                        leftOffset += nameTitleWidth;
-                        elem = document.querySelector('.resume-email');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = (titleWidth - nameTitleWidth) + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 1px';
-                        elem.style['border-left'] = 'black solid 1px';
-                        elem.style['border-bottom'] = 'black solid 2px';
-                        // 携帯電話
-                        leftOffset += (titleWidth - nameTitleWidth);
-                        elem = document.querySelector('.resume-mobile');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = (contentWidth - (titleWidth - nameTitleWidth) - nameTitleWidth) + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 1px';
-                        elem.style['border-left'] = 'black solid 1px';
-                        elem.style['border-right'] = 'black solid 2px';
-                        elem.style['border-bottom'] = 'black solid 2px';
-
-                        // 連絡先
-
-                        // 空行
-                        topOffset += lineHeight;
-                        var addSpacer = (parent, offset) => {
-                            var elem = document.createElement('div');
-                            elem.style.position = 'absolute';
-                            elem.style['font-size'] = '9pt';
-                            elem.style['text-align'] = 'center';
-                            elem.style.top = offset + 'mm';
-                            elem.style.width = nameWidth + 'mm';
-                            elem.style.height = lineHeight + 'mm';
-                            parent.after(elem)
-                        };
-                        addSpacer(elem, topOffset)
-
-                        // 年
-                        topOffset += lineHeight;
-                        leftOffset = 0;
-                        elem = document.querySelector('.resume-history-year-title');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = nameTitleWidth + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 2px';
-                        elem.style['border-left'] = 'black solid 2px';
-                        // 月
-                        leftOffset += nameTitleWidth;
-                        elem = document.querySelector('.resume-history-month-title');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = monthWidth + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 2px';
-                        elem.style['border-left'] = 'black solid 1px';
-                        // 学歴・職歴
-                        leftOffset += monthWidth;
-                        elem = document.querySelector('.resume-history-text-title');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = (contentWidth - nameTitleWidth - monthWidth) + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 2px';
-                        elem.style['border-left'] = 'black solid 1px';
-                        elem.style['border-right'] = 'black solid 2px';
-
-                        // 学歴タイトル
-                        topOffset += lineHeight;
-                        leftOffset = 0;
-                        elem = document.querySelector('.resume-history-year-academic-title');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = nameTitleWidth + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 1px';
-                        elem.style['border-left'] = 'black solid 2px';
-                        // 月
-                        leftOffset += nameTitleWidth;
-                        elem = document.querySelector('.resume-history-month-academic-title');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = monthWidth + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 1px';
-                        elem.style['border-left'] = 'black solid 1px';
-                        // 学歴・職歴
-                        leftOffset += monthWidth;
-                        elem = document.querySelector('.resume-history-text-academic-title');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = (contentWidth - nameTitleWidth - monthWidth) + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 1px';
-                        elem.style['border-left'] = 'black solid 1px';
-                        elem.style['border-right'] = 'black solid 2px';
-
-                        // 学歴（動的）
-                        var addHistories = (parent, histories) => {
-                            histories.forEach(history => {
-                                //
-                                var elem;
-
-                                // 年
-                                topOffset += lineHeight;
-                                leftOffset = 0;
-                                elem = document.createElement('div');
-                                elem.style.position = 'absolute';
-                                elem.style['font-size'] = '9pt';
-                                elem.style['text-align'] = 'center';
-                                elem.style.top = topOffset + 'mm';
-                                elem.style.left = leftOffset + 'mm';
-                                elem.style.width = nameTitleWidth + 'mm';
-                                elem.style.height = lineHeight + 'mm';
-                                elem.style['border-top'] = 'black solid 1px';
-                                elem.style['border-left'] = 'black solid 2px';
-                                elem.innerText = history.year + ' 年';
-                                parent.after(elem)
-                                parent = elem;
-                                // 月
-                                leftOffset += nameTitleWidth;
-                                elem = document.createElement('div');
-                                elem.style.position = 'absolute';
-                                elem.style['font-size'] = '9pt';
-                                elem.style['text-align'] = 'center';
-                                elem.style.top = topOffset + 'mm';
-                                elem.style.left = leftOffset + 'mm';
-                                elem.style.width = monthWidth + 'mm';
-                                elem.style.height = lineHeight + 'mm';
-                                elem.style['border-top'] = 'black solid 1px';
-                                elem.style['border-left'] = 'black solid 1px';
-                                elem.innerText = history.month;
-                                parent.after(elem)
-                                parent = elem;
-                                // 歴
-                                leftOffset += monthWidth;
-                                elem = document.createElement('div');
-                                elem.style.position = 'absolute';
-                                elem.style['font-size'] = '9pt';
-                                elem.style['text-align'] = 'left';
-                                elem.style['padding-left'] = '2mm';
-                                elem.style.top = topOffset + 'mm';
-                                elem.style.left = leftOffset + 'mm';
-                                elem.style.width = (contentWidth - nameTitleWidth - monthWidth) + 'mm';
-                                elem.style.height = lineHeight + 'mm';
-                                elem.style['border-top'] = 'black solid 1px';
-                                elem.style['border-left'] = 'black solid 1px';
-                                elem.style['border-right'] = 'black solid 2px';
-                                elem.innerText = history.text;
-                                parent.after(elem)
-                                parent = elem;
-                            });
-                        };
-                        addHistories(elem, data.academicHistories);
-
-                        // 職歴タイトル
-                        topOffset += lineHeight;
-                        leftOffset = 0;
-                        elem = document.querySelector('.resume-history-year-work-title');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = nameTitleWidth + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 1px';
-                        elem.style['border-left'] = 'black solid 2px';
-                        // 月
-                        leftOffset += nameTitleWidth;
-                        elem = document.querySelector('.resume-history-month-work-title');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = monthWidth + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 1px';
-                        elem.style['border-left'] = 'black solid 1px';
-                        // 学歴・職歴
-                        leftOffset += monthWidth;
-                        elem = document.querySelector('.resume-history-text-work-title');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = (contentWidth - nameTitleWidth - monthWidth) + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 1px';
-                        elem.style['border-left'] = 'black solid 1px';
-                        elem.style['border-right'] = 'black solid 2px';
-
-                        // 職歴（動的）
-                        addHistories(elem, data.workHistories);
-
-                        // 履歴の空行
-                        var addHistorySpacer = (parent, num = 1) => {
-                            for (var i = 0; i < num; i++) {
-                                topOffset += lineHeight;
-                                leftOffset = 0;
-                                elem = document.createElement('div');
-                                elem.style.position = 'absolute';
-                                elem.style['font-size'] = '9pt';
-                                elem.style.top = topOffset + 'mm';
-                                elem.style.left = leftOffset + 'mm';
-                                elem.style.width = nameTitleWidth + 'mm';
-                                elem.style.height = lineHeight + 'mm';
-                                elem.style['border-top'] = 'black solid 1px';
-                                elem.style['border-left'] = 'black solid 2px';
-                                if (i === num - 1) {
-                                    elem.style['border-bottom'] = 'black solid 2px';
-                                }
-                                parent.after(elem)
-                                parent = elem;
-                                // 月
-                                leftOffset += nameTitleWidth;
-                                elem = document.createElement('div');
-                                elem.style.position = 'absolute';
-                                elem.style['font-size'] = '9pt';
-                                elem.style.top = topOffset + 'mm';
-                                elem.style.left = leftOffset + 'mm';
-                                elem.style.width = monthWidth + 'mm';
-                                elem.style.height = lineHeight + 'mm';
-                                elem.style['border-top'] = 'black solid 1px';
-                                elem.style['border-left'] = 'black solid 1px';
-                                if (i === num - 1) {
-                                    elem.style['border-bottom'] = 'black solid 2px';
-                                }
-                                parent.after(elem)
-                                parent = elem;
-                                // 学歴・職歴
-                                leftOffset += monthWidth;
-                                elem = document.createElement('div');
-                                elem.style.position = 'absolute';
-                                elem.style['font-size'] = '9pt';
-                                elem.style.top = topOffset + 'mm';
-                                elem.style.left = leftOffset + 'mm';
-                                elem.style.width = (contentWidth - nameTitleWidth - monthWidth) + 'mm';
-                                elem.style.height = lineHeight + 'mm';
-                                elem.style['border-top'] = 'black solid 1px';
-                                elem.style['border-left'] = 'black solid 1px';
-                                elem.style['border-right'] = 'black solid 2px';
-                                if (i === 0) {
-                                    elem.style['text-align'] = 'right';
-                                    elem.style['padding-right'] = '2mm';
-                                    elem.innerText = '以上';
-                                } else if (i === num - 1) {
-                                    elem.style['border-bottom'] = 'black solid 2px';
-                                }
-                                parent.after(elem)
-                                parent = elem;
-                            }
-                        }
-
-                        addHistorySpacer(elem, historyMaxCount - (data.academicHistories.length + data.workHistories.length))
-
-                        // 以下２ページ目
-
-                        // 年
-                        topOffset = 0;
-                        leftOffset = 0;
-                        elem = document.querySelector('.resume-license-year-title');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = nameTitleWidth + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 2px';
-                        elem.style['border-left'] = 'black solid 2px';
-                        // 月
-                        leftOffset += nameTitleWidth;
-                        elem = document.querySelector('.resume-license-month-title');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = monthWidth + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 2px';
-                        elem.style['border-left'] = 'black solid 1px';
-                        // 免許・資格
-                        leftOffset += monthWidth;
-                        elem = document.querySelector('.resume-license-text-title');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = (contentWidth - nameTitleWidth - monthWidth) + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 2px';
-                        elem.style['border-left'] = 'black solid 1px';
-                        elem.style['border-right'] = 'black solid 2px';
-
-                        // 免許・資格 (動的)
-                        addHistories(elem, data.licenses);
-
-                        addHistorySpacer(elem, licenseMaxCount - (data.licenses.length))
-
-                        // 空行
-                        topOffset += lineHeight;
-                        addSpacer(elem, topOffset);
-
-                        // 志望動機タイトル
-                        topOffset += lineHeight;
-                        leftOffset = 0;
-                        elem = document.querySelector('.resume-motivation-title');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = contentWidth + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 2px';
-                        elem.style['border-left'] = 'black solid 2px';
-                        elem.style['border-right'] = 'black solid 2px';
-
-                        // 志望の動機、特技、好きな学科、アピールポイントなど
-                        topOffset += lineHeight;
-                        leftOffset = 0;
-                        elem = document.querySelector('.resume-motivation');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = contentWidth + 'mm';
-                        elem.style.height = (lineHeight * 10) + 'mm';
-                        elem.style['border-top'] = 'black solid 1px';
-                        elem.style['border-left'] = 'black solid 2px';
-                        elem.style['border-right'] = 'black solid 2px';
-                        elem.style['border-bottom'] = 'black solid 2px';
-
-                        // 空行
-                        topOffset += (lineHeight * 10);
-                        addSpacer(elem, topOffset);
-
-                        // 本人希望記入欄タイトル
-                        topOffset += lineHeight;
-                        leftOffset = 0;
-                        elem = document.querySelector('.resume-wish-title');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = contentWidth + 'mm';
-                        elem.style.height = lineHeight + 'mm';
-                        elem.style['border-top'] = 'black solid 2px';
-                        elem.style['border-left'] = 'black solid 2px';
-                        elem.style['border-right'] = 'black solid 2px';
-
-                        // 本人希望記入欄（特に給料・職種・勤務時間・勤務地・その他についての希望などがあれば記入）
-                        topOffset += lineHeight;
-                        leftOffset = 0;
-                        elem = document.querySelector('.resume-wish');
-                        elem.style.top = topOffset + 'mm';
-                        elem.style.left = leftOffset + 'mm';
-                        elem.style.width = contentWidth + 'mm';
-                        elem.style.height = (lineHeight * 5) + 'mm';
-                        elem.style['border-top'] = 'black solid 1px';
-                        elem.style['border-left'] = 'black solid 2px';
-                        elem.style['border-right'] = 'black solid 2px';
-                        elem.style['border-bottom'] = 'black solid 2px';
-                    }
+                ['resume-year', 'resume-month', 'resume-text'].forEach((colClass) => {
+                    const col = document.createElement('div');
+                    col.classList.add(colClass);
+                    col.style.top = String(96 + 6 * i) + 'mm';
+                    row.appendChild(col);
                 });
-        })();
 
+                tableBody.appendChild(row);
+            }
+
+            // 免許・資格
+            tableBody = document.querySelector('.resume-license .table-body');
+            for (let i = 0; i < 10; i++) {
+                const row = document.createElement('div');
+                row.classList.add('row');
+
+                ['resume-year', 'resume-month', 'resume-text'].forEach((colClass) => {
+                    const col = document.createElement('div');
+                    col.classList.add(colClass);
+                    col.style.top = String(6 + 6 * i) + 'mm';
+                    row.appendChild(col);
+                });
+
+                tableBody.appendChild(row);
+            }
+        });
     </script>
+
 </body>
 
 </html>

@@ -1,284 +1,586 @@
-export const message = 'Hello from module!';
+/**
+ * 履歴書 V2
+ * 
+ * @author ggrtn
+ */
 
-export function sayHello(name) {
-    console.log(`Hello, ${name}!`);
+// ======================================================================
+// 非公開 API
+// ======================================================================
+
+/**
+ * ケバブケースからキャメルケースに変換
+ * @param {} str 
+ * @returns 
+ */
+const kebabToCamel = (str) => {
+    return str.replace(/-([a-z])/g, (match, letter) => letter.toUpperCase());
 }
 
-const gridWidth = 6;
-
-// 連絡先情報を表示するかどうか
-const showContact = false;
-let contactMaxRows = 0;
-if (showContact) {
-    contactMaxRows = 3;
-}
-const contactClasses = ['resume-contact-address-kana', 'resume-contact-address', 'resume-contact-tel'];
-
-const contentWidth = 29; // 174mm
-const titleWidth = 23; // 138mm
-const labelWidth = 4; // 24mm
-const nameWidth = 17; // 102mm
-const monthWidth = 2; // 12mm
-const historyMaxCount = 29 - contactMaxRows; // １行 gridWidth mm とした場合丁度いい行数
-const licenseMaxCount = 8;
-const motivationMaxRows = 10;
-const wishMaxRows = 5;
-const maxRows = 42; // １ページの最大行数
-
-const layout = {
-    // 1ページ目
-    // '.resume-title>h1': { left: 0, top: 0, width: titleWidth, height: 2 },
-    '.resume-date>div': { left: 0, top: 2, width: titleWidth, height: 1, 'text-align': 'right', 'border': 0 },
-
-    '.resume-name-kana>h2': { left: 0, top: 3, width: labelWidth, height: 1, 'border-top': 'black solid 2px', 'border-left': 'black solid 2px' },
-    '.resume-name-kana>div': { left: labelWidth, top: 3, width: nameWidth, height: 1, 'border-left': 'none', 'text-align': 'center', 'border-top': 'black solid 2px' },
-    '.resume-name>h2': { left: 0, top: 4, width: labelWidth, height: 2, 'border-left': 'black solid 2px', 'letter-spacing': '6mm' },
-    '.resume-name>div': { left: labelWidth, top: 4, width: nameWidth, height: 2, 'border-top': 'black dashed 1px', 'border-left': 'none', 'text-align': 'center', 'padding-top': '2mm', 'font-size': '12pt' },
-
-    '.resume-gender>h2': { left: (labelWidth + nameWidth), top: 3, width: 2, height: 1, 'text-align': 'center', 'border-top': 'black solid 2px', 'border-right': 'black solid 2px' },
-    '.resume-gender>div': { left: (labelWidth + nameWidth), top: 4, width: 2, height: 2, 'text-align': 'center', 'padding-top': (gridWidth / 2) + 'mm', 'border-right': 'black solid 2px' },
-
-    '.resume-birthday>h2': { left: 0, top: 6, width: labelWidth, height: 1, 'border-left': 'black solid 2px' },
-    '.resume-birthday>div': { left: labelWidth, top: 6, width: (titleWidth - labelWidth), height: 1, 'white-space': 'nowrap', 'border-right': 'black solid 2px' },
-
-    '.resume-address-kana>h2': { left: 0, top: 7, width: labelWidth, height: 1, 'border-left': 'black solid 2px' },
-    '.resume-address-kana>div': { left: labelWidth, top: 7, width: (titleWidth - labelWidth), height: 1, 'white-space': 'nowrap', 'border-left': 'none' },
-    '.resume-address>h2': { left: 0, top: 8, width: labelWidth, height: 2, 'border-top': 'black dashed 1px', 'border-left': 'black solid 2px', 'letter-spacing': '1.2mm' },
-    '.resume-address>div': { left: labelWidth, top: 8, width: (titleWidth - labelWidth), height: 2, 'white-space': 'nowrap', 'border-top': 'black dashed 1px', 'border-left': 'none' },
-
-    '.resume-email>h2': { left: 0, top: 10, width: labelWidth, height: 1, 'border-left': 'black solid 2px', 'border-bottom': 'black solid 2px' },
-    '.resume-email>div': { left: labelWidth, top: 10, width: (titleWidth - labelWidth), height: 1, 'white-space': 'nowrap', 'border-bottom': 'black solid 2px' },
-    '.resume-tel>h2': { left: titleWidth, top: 7, width: (contentWidth - titleWidth), height: 1, 'text-align': 'center', 'border-top': 'black solid 2px', 'border-right': 'black solid 2px' },
-    '.resume-tel>div': { left: titleWidth, top: 8, width: (contentWidth - titleWidth), height: 1, 'border-right': 'black solid 2px' },
-    '.resume-mobile>h2': { left: titleWidth, top: 9, width: (contentWidth - titleWidth), height: 1, 'text-align': 'center', 'border-right': 'black solid 2px' },
-    '.resume-mobile>div': { left: titleWidth, top: 10, width: (contentWidth - titleWidth), height: 1, 'border-right': 'black solid 2px', 'border-bottom': 'black solid 2px' },
-
-    '.resume-contact-address-kana>h2': { left: 0, top: 11, width: labelWidth, height: 1, 'border-left': 'black solid 2px' },
-    '.resume-contact-address-kana>div': { left: labelWidth, top: 11, width: (titleWidth - labelWidth), height: 1, 'border-left': 'none', 'white-space': 'nowrap', 'font-size': '8pt' },
-    '.resume-contact-address>h2': { left: 0, top: 12, width: labelWidth, height: 2, 'border-top': 'black dashed 1px', 'border-bottom': 'black solid 2px', 'border-left': 'black solid 2px', 'letter-spacing': '1.2mm' },
-    '.resume-contact-address>div': { left: labelWidth, top: 12, width: (titleWidth - labelWidth), height: 2, 'border-top': 'black dashed 1px', 'border-bottom': 'black solid 2px', 'border-left': 'none' },
-    '.resume-contact-tel>h2': { left: titleWidth, top: 11, width: (contentWidth - titleWidth), height: 1, 'border-right': 'black solid 2px' },
-    '.resume-contact-tel>div': { left: titleWidth, top: 12, width: (contentWidth - titleWidth), height: 2, 'border-bottom': 'black solid 2px', 'border-right': 'black solid 2px' },
-
-    '.resume-history': { top: 12 + contactMaxRows },
-    '.resume-year': { left: 0, width: labelWidth, 'text-align': 'center' },
-    '.resume-month': { left: labelWidth, width: monthWidth, 'text-align': 'center' },
-    '.resume-text': { left: labelWidth + monthWidth, width: contentWidth - labelWidth - monthWidth },
-
-    // 2ページ目
-    '.resume-license': { top: 0 },
-    '.resume-year': { left: 0, width: labelWidth, 'text-align': 'center' },
-    '.resume-month': { left: labelWidth, width: monthWidth, 'text-align': 'center' },
-    '.resume-text': { left: labelWidth + monthWidth, width: contentWidth - labelWidth - monthWidth },
-
-    '.resume-motivation>h2': { left: 0, top: 10, width: contentWidth, height: 1, 'border-top': 'black solid 2px', 'border-left': 'black solid 2px', 'border-right': 'black solid 2px' },
-    '.resume-motivation>div': { left: 0, top: 11, width: contentWidth, height: motivationMaxRows, 'border-left': 'black solid 2px', 'border-right': 'black solid 2px', 'border-bottom': 'black solid 2px' },
-
-    '.resume-wish>h2': { left: 0, top: 22, width: contentWidth, height: 1, 'border-top': 'black solid 2px', 'border-left': 'black solid 2px', 'border-right': 'black solid 2px' },
-    '.resume-wish>div': { left: 0, top: 23, width: contentWidth, height: wishMaxRows, 'border-left': 'black solid 2px', 'border-right': 'black solid 2px', 'border-bottom': 'black solid 2px' },
-}
-
-if (showContact) {
-    // 連絡先の上の下部ボーダーを 1px にする
-    delete layout['.resume-email>h2']['border-bottom'];
-    delete layout['.resume-email>div']['border-bottom'];
-    delete layout['.resume-mobile>div']['border-bottom'];
-
-    console.log(layout);
-}
-
-export async function fetchJSON(url) {
-    try {
-        const response = await fetch(url);
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('JSONファイルの取得に失敗しました:', error);
-        return null; // またはエラーハンドリングに応じた値を返す
+// バリデータ
+const validator = {
+    /**
+     * YYYY-MM-DD かどうかチェック
+     * @param {*} date 
+     * @returns 
+     */
+    date(date) {
+        return date && date.length > 0 && date.match(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/);
+    },
+    /**
+     * NNN-NNNN かどうかチェック
+     * @param {*} code 
+     * @returns 
+     */
+    postalcode(code) {
+        return code && code.length > 0 && code.match(/^[0-9]{3}-[0-9]{4}$/);
+    },
+    /**
+     * 有効な文字列かどうかチェック
+     * @param {} text 
+     * @returns 
+     */
+    string(text) {
+        return text && text.length > 0;
     }
 }
 
-export function applyLayout(pageContent, data) {
-    const sections = pageContent.querySelectorAll('section.panel');
-    sections.forEach(section => {
-        // カード
-        const cards = section.querySelectorAll('.card');
-        if (cards && cards.length !== 0) {
-            cards.forEach(card => {
-                const resumeClass = card.classList.values().filter(value => value.match(/^resume-/));
-                if (resumeClass.length !== 0) {
-                    const selector = resumeClass.toArray()[0];
-                    // ラベル
-                    const labelSelector = `.${selector}>h2`;
-                    if (labelSelector in layout) {
-                        const elem = card.querySelector('h2');
-                        if (elem) {
-                            elem.classList.add('cell');
-                            Object.keys(layout[labelSelector]).forEach(key => {
-                                if (key.match(/^(left|top|width||height)$/)) {
-                                    elem.style[key] = (layout[labelSelector][key] * gridWidth) + 'mm';
-                                } else {
-                                    elem.style[key] = layout[labelSelector][key];
-                                }
-                            })
-                        }
-                    }
-                    // 値
-                    const valueSelector = `.${selector}>div`;
-                    if (valueSelector in layout) {
-                        const elem = card.querySelector('div');
-                        if (elem) {
-                            elem.classList.add('cell');
-                            Object.keys(layout[valueSelector]).forEach(key => {
-                                if (key.match(/^(left|top|width||height)$/)) {
-                                    elem.style[key] = (layout[valueSelector][key] * gridWidth) + 'mm';
-                                } else {
-                                    elem.style[key] = layout[valueSelector][key];
-                                }
-                            })
-                        }
-                        if (valueSelector in data) {
-                            if (Array.isArray(data[valueSelector])) {
-                                elem.innerHtml = '';
-                                elem.innerText = '';
-                                data[valueSelector].forEach(item => {
-                                    const lineElem = document.createElement('div');
-                                    lineElem.innerText = item;
-                                    elem.appendChild(lineElem);
-                                })
-                            } else {
-                                elem.innerText = data[valueSelector];
-                            }
-                        }
+/**
+ * 今年の誕生日を計算する
+ * @param {*} birthDate 
+ * @param {*} now 
+ * @returns 
+ */
+const getThisYearBirthday = (birthDate, now = null) => {
+    if (now === null) {
+        now = new Date();
+    }
+    const month = birthDate.getMonth();
+    const day = birthDate.getDate();
+    const currentYear = now.getFullYear();
+
+    return new Date(currentYear, month, day);
+}
+
+/**
+ * 生年月日のテキストを生成
+ * @param {} resumeDate 
+ * @param {*} resumeBirthday 
+ * @returns 
+ */
+const resumeBirthdayText = (resumeDate, resumeBirthday) => {
+    let result = '';
+    if (validator.date(resumeBirthday)) {
+        const now = validator.date(resumeDate) ? new Date(resumeDate) : new Date();
+        const date = new Date(resumeBirthday);
+        const thisYearBirthday = getThisYearBirthday(date, now);
+        const age = now.getFullYear() - date.getFullYear() - 1 + (now.getTime() >= thisYearBirthday.getTime() ? 1 : 0);
+        result = String(date.getFullYear()) + ' 年';
+        result += ' ' + String(date.getMonth() + 1) + ' 月';
+        result += ' ' + String(date.getDate()) + ' 日';
+        result += ' ( 満 ' + age + ' 歳 )';
+    }
+    return result;
+}
+
+
+// ======================================================================
+// 公開 API
+// ======================================================================
+
+/**
+ * 指定した URL の json データを取得
+ * @param {*} url 
+ * @returns 
+ */
+export default {
+    async fetchJSON(url) {
+        try {
+            const response = await fetch(url);
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('JSONファイルの取得に失敗しました:', error);
+            return null; // またはエラーハンドリングに応じた値を返す
+        }
+    },
+
+    /**
+     * 履歴書の情報を JSON としてダウンロードする
+     * @param {*} json 文字列化したもの
+     * @param {*} saveFilename 
+     */
+    downloadJSON(saveFilename = 'resume-v2') {
+        const now = new Date();
+        const filename = String(now.getFullYear()) + String(now.getMonth() + 1).padStart(2, '0') + String(now.getDate()).padStart(2, '0')
+            + '-' + String(now.getHours()).padStart(2, '0') + String(now.getMinutes()).padStart(2, '0') + String(now.getSeconds()).padStart(2, '0')
+            + '-' + saveFilename + '.json';
+
+        const keys = [
+            'resume-date',
+            'resume-name-kana',
+            'resume-name',
+            // 'resume-gender',
+            'resume-birthday',
+            'resume-postalcode',
+            'resume-address-kana',
+            'resume-address',
+            'resume-email',
+            'resume-tel',
+            'resume-mobile',
+            'resume-contact-postalcode',
+            'resume-contact-address-kana',
+            'resume-contact-address',
+            'resume-contact-tel',
+            'resume-motivation',
+            'resume-wish',
+        ];
+        const data = {};
+
+        // text
+        keys.forEach((key) => {
+            const selector = `.control input#${key}[type="text"], .control textarea#${key}`;
+            const input = document.querySelector(selector);
+            if (input) {
+                data[kebabToCamel(key)] = input.value;
+            }
+        });
+
+        // radio
+        data[kebabToCamel('resume-gender')] = document.querySelector('.control input[name="resume-gender"][type="radio"]:checked').value;
+
+        // table
+        ['resume-history', 'resume-license'].forEach((key) => {
+            const dataKey = kebabToCamel(key);
+            data[dataKey] = { rows: [] };
+
+            document.querySelectorAll(`.control div#${key}>.rows>.row`).forEach((row) => {
+                data[dataKey].rows.push({
+                    'resume-year': row.querySelector('input[name="resume-year"]').value,
+                    'resume-month': row.querySelector('input[name="resume-month"]').value,
+                    'resume-text': row.querySelector('input[name="resume-text"]').value,
+                    'right': row.querySelector('button[role="textAlignRight"]').dataset.right == 'true',
+                });
+            });
+        });
+
+        // 証明写真
+        let resumeIdPhoto = null;
+        const imgElement = document.querySelector('.resume-photo-img>img');
+        if (imgElement) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            if (imgElement.complete) {
+                const mimeType = 'image/png';
+                // canvas のサイズを画像のサイズに設定
+                canvas.width = imgElement.naturalWidth;
+                canvas.height = imgElement.naturalHeight;
+
+                // canvas に画像を描画
+                ctx.drawImage(imgElement, 0, 0);
+
+                // Data URI スキームを取得
+                resumeIdPhoto = canvas.toDataURL(mimeType);
+            }
+        }
+        data[kebabToCamel('resume-id-photo')] = resumeIdPhoto;
+
+        const json = JSON.stringify(data, null, 2); // JSON 文字列に変換 (整形オプション付き)
+        const blob = new Blob([json], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url); // メモリリークを防ぐ
+    },
+
+    /**
+     * 読み込んだデータを反映する (フォーム経由)
+     * @param {} data 
+     */
+    applyData(data) {
+        // 反映先一覧 (テーブル以外)
+        const elems = {
+            'resume-date': document.querySelector('.resume .resume-date'),
+            'resume-name-kana': document.querySelector('.resume .resume-name-kana>div'),
+            'resume-name': document.querySelector('.resume .resume-name>div'),
+            'resume-gender': document.querySelector('.resume .resume-gender>div'),
+            'resume-birthday': document.querySelector('.resume .resume-birthday>div'),
+            'resume-address-kana': document.querySelector('.resume .resume-address-kana>div'),
+            'resume-address': document.querySelector('.resume .resume-address>div'),
+            'resume-email': document.querySelector('.resume .resume-email>div'),
+            'resume-tel': document.querySelector('.resume .resume-tel>div'),
+            'resume-mobile': document.querySelector('.resume .resume-mobile>div'),
+            'resume-contact-address-kana': document.querySelector('.resume .resume-contact-address-kana>div'),
+            'resume-contact-address': document.querySelector('.resume .resume-contact-address>div'),
+            'resume-contact-tel': document.querySelector('.resume .resume-contact-tel>div'),
+            'resume-motivation': document.querySelector('.resume .resume-motivation>div'),
+            'resume-wish': document.querySelector('.resume .resume-wish>div'),
+        };
+
+        // イベントリスナー登録
+        Object.keys(elems).forEach((key) => {
+            if (key === 'resume-gender') {
+                // radio
+                const selector = `.control input[name="${key}"][type="radio"]`;
+                const forms = document.querySelectorAll(selector)
+                const handler = (ev) => {
+                    if (ev.target.checked) {
+                        elems[key].innerText = ev.target.value == '1' ? '男' : (ev.target.value == '2' ? '女' : '');
                     }
                 }
-            })
-        }
+                forms.forEach((form) => {
+                    form.removeEventListener('change', handler);
+                    form.addEventListener('change', handler);
+                });
+            } else {
+                // input, textarea
+                const selector = `.control input#${key}[type="text"], .control textarea#${key}`;
+                const form = document.querySelector(selector);
+                if (form) {
+                    let handler;
+                    if (key === 'resume-date') {
+                        // 記入日
+                        handler = (ev) => {
+                            let text = '';
+                            if (ev.target.value.length > 0) {
+                                let date = new Date(ev.target.value);
+                                if (!Number.isNaN(date.getTime())) {
+                                    text = String(date.getFullYear()) + ' 年'
+                                        + ' ' + String(date.getMonth() + 1) + ' 月'
+                                        + ' ' + String(date.getDate()) + ' 日'
+                                        + ' 現在';
+                                }
+                            }
+                            elems[key].innerText = text;
+                        }
+                    } else if (key === 'resume-address') {
+                        // 現住所
+                        const formPostalCode = document.querySelector('.control input#resume-postalcode');
+                        const formAddress = document.querySelector('.control input#resume-address');
+                        handler = (ev) => {
+                            let text = '';
+                            const postalCode = formPostalCode.value;
+                            if (postalCode && postalCode.length > 0) {
+                                text = `〒 ${postalCode}\n`;
+                            }
+                            text += formAddress.value;
+                            elems[key].innerText = text;
+                        }
+                        formPostalCode.removeEventListener('input', handler);
+                        formPostalCode.addEventListener('input', handler);
+                    } else if (key === 'resume-contact-address') {
+                        // 連絡先
+                        const formPostalCode = document.querySelector('.control input#resume-contact-postalcode');
+                        const formAddress = document.querySelector('.control input#resume-contact-address');
+                        handler = (ev) => {
+                            let text = '';
+                            const postalCode = formPostalCode.value;
+                            if (postalCode && postalCode.length > 0) {
+                                text = `〒 ${postalCode}\n`;
+                            }
+                            text += formAddress.value;
+                            elems[key].innerText = text;
+                        }
+                        formPostalCode.removeEventListener('input', handler);
+                        formPostalCode.addEventListener('input', handler);
+                    } else if (key === 'resume-birthday') {
+                        // 生年月日
+                        const formDate = document.querySelector('.control input#resume-date');
+                        handler = (ev) => {
+                            elems[key].innerText = resumeBirthdayText(FormData.value, ev.target.value);
+                        }
+                    } else {
+                        handler = (ev) => {
+                            elems[key].innerText = ev.target.value;
+                        }
+                    }
+                    form.removeEventListener('input', handler);
+                    form.addEventListener('input', handler);
+                }
+            }
+        });
+
+        // 反映
+        Object.keys(elems).forEach((key) => {
+            if (key === 'resume-gender') {
+                // radio
+                const selector = `.control input[name^=${key}][type="radio"]`;
+                const inputs = document.querySelectorAll(selector);
+                inputs.forEach((input) => {
+                    const dataKey = kebabToCamel(key);
+                    if (dataKey in data) {
+                        input.checked = input.value == data[dataKey];
+                    }
+                    input.dispatchEvent(new Event('change', { bubbles: true }))
+                });
+            } else {
+                const selector = `.control input#${key}[type="text"], .control textarea#${key}`;
+                const input = document.querySelector(selector);
+                const dataKey = kebabToCamel(key);
+                if (dataKey in data) {
+                    if (key === 'resume-address') {
+                        // 郵便番号もセットする
+                        if ('resumePostalcode' in data) {
+                            document.querySelector('.control input#resume-postalcode').value = data['resumePostalcode'];
+                        }
+                    } else if (key === 'resume-contact-address') {
+                        // 連絡先郵便番号もセットする
+                        if ('resumeContactPostalcode' in data) {
+                            document.querySelector('.control input#resume-contact-postalcode').value = data['resumeContactPostalcode'];
+                        }
+                    }
+                    input.value = data[dataKey];
+                    input.dispatchEvent(new Event('input', { bubbles: true }))
+                }
+            }
+        });
 
         // テーブル
-        const tables = section.querySelectorAll('.table');
-        if (tables && tables.length !== 0) {
-            tables.forEach(table => {
-                // 縦位置
-                const resumeClass = table.classList.values().filter(value => value.match(/^resume-/));
-                if (resumeClass.length !== 0) {
-                    const selector = resumeClass.toArray()[0];
-                    const tableSelector = `.${selector}`;
-                    if (tableSelector in layout) {
-                        const top = layout[tableSelector].top;
-                        const headerSelectors = [];
+        ['resume-history', 'resume-license'].forEach((key) => {
+            // 読込
+            const dataKey = kebabToCamel(key);
+            if (dataKey in data) {
+                const table = document.querySelector(`.control div#${key}`);
 
-                        // ヘッダー
-                        const headers = table.querySelectorAll('.table-header>div');
-                        let numCols = 0;
-                        headers.forEach(elem => {
-                            // 横位置
-                            const resumeClass = elem.classList.values().filter(value => value.match(/^resume-/));
-                            if (resumeClass.length !== 0) {
-                                const selector = resumeClass.toArray()[0];
-                                const headerSelector = `.${selector}`;
-                                if (headerSelector in layout) {
-                                    elem.classList.add('cell');
-                                    elem.style['text-align'] = 'center';
-                                    elem.style.top = (top * gridWidth) + 'mm';
-                                    elem.style.height = gridWidth + 'mm';
-                                    elem.style['border-top'] = 'black solid 2px';
+                // 格納先の準備
+                const rows = table.querySelector('.rows');
+                rows.innerHTML = '';
 
-                                    if (headers.length === 1) {
-                                        elem.style['border-left'] = 'black solid 2px';
-                                        elem.style['border-right'] = 'black solid 2px';
-                                    } else if (numCols === 0) {
-                                        elem.style['border-left'] = 'black solid 2px';
-                                    } else if (numCols === headers.length - 1) {
-                                        elem.style['border-right'] = 'black solid 2px';
-                                    }
-                                    numCols++;
+                // テンプレートの準備
+                const template = table.querySelector('template');
 
-                                    Object.keys(layout[headerSelector]).forEach(key => {
-                                        if (key.match(/^(left|width)$/)) {
-                                            elem.style[key] = (layout[headerSelector][key] * gridWidth) + 'mm';
-                                        } else {
-                                            elem.style[key] = layout[headerSelector][key];
-                                        }
-                                    })
-                                    headerSelectors.push(headerSelector);
-                                }
-                            }
-                        })
+                data[dataKey].rows.forEach((rowData) => {
+                    const row = template.content.cloneNode(true);
+                    row.querySelector('input[name="resume-year"]').value = rowData['resume-year'];
+                    row.querySelector('input[name="resume-month"]').value = rowData['resume-month'];
+                    row.querySelector('input[name="resume-text"]').value = rowData['resume-text'];
+                    row.querySelector('button[role="textAlignRight"]').dataset.right = rowData['right'] ? 'true' : 'false';
+                    rows.appendChild(row);
+                });
+            }
 
-                        // ボディ
-                        if (tableSelector in data) {
-                            let numRows = 0;
-                            let offset = 1;
-                            const header = table.querySelector('.table-header');
-                            for (var i = 0; i < data[tableSelector]['max-num-rows']; i++) {
-                                let numCols = 0;
-                                headerSelectors.forEach((headerSelector) => {
-                                    const elem = document.createElement('div');
-                                    elem.classList.add('cell');
-                                    elem.style.top = ((top + offset) * gridWidth) + 'mm';
-                                    elem.style.height = gridWidth + 'mm';
+            // 反映
+            this.applyTableData(key);
+        });
 
-                                    if (numRows === data[tableSelector]['max-num-rows'] - 1) {
-                                        elem.style['border-bottom'] = 'black solid 2px';
-                                    }
+        // 証明写真
+        if (data.resumeIdPhoto && data.resumeIdPhoto.length > 0) {
+            const imagePreview = document.querySelector('.resume .resume-photo-img');
+            imagePreview.innerHTML = '';
+            const photoImage = document.createElement('img');
+            photoImage.src = data.resumeIdPhoto;
+            imagePreview.append(photoImage);
+        }
+    },
 
-                                    if (headerSelectors.length === 1) {
-                                        elem.style['border-left'] = 'black solid 2px';
-                                        elem.style['border-right'] = 'black solid 2px';
-                                    } else if (numCols === 0) {
-                                        elem.style['border-left'] = 'black solid 2px';
-                                    } else if (numCols === headerSelectors.length - 1) {
-                                        elem.style['border-right'] = 'black solid 2px';
-                                    }
-                                    numCols++;
+    /**
+     * テーブルデータの更新
+     * @param {} resumeClass 
+     */
+    applyTableData(resumeClass) {
+        // 現在の内容を空にする
+        document.querySelectorAll(`.resume .${resumeClass}>.table-body>.row`).forEach((targetRow) => {
+            targetRow.querySelector('.resume-year').innerText = '';
+            targetRow.querySelector('.resume-month').innerText = '';
+            targetRow.querySelector('.resume-text').innerText = '';
+            targetRow.querySelector('.resume-text').style['text-align'] = 'left';
+        });
 
-                                    Object.keys(layout[headerSelector]).forEach(key => {
-                                        if (key.match(/^(left|width)$/)) {
-                                            elem.style[key] = (layout[headerSelector][key] * gridWidth) + 'mm';
-                                        } else {
-                                            elem.style[key] = layout[headerSelector][key];
-                                        }
-                                    })
+        // 反映
+        let targetRow = document.querySelector(`.resume .${resumeClass}>.table-body>.row`);
+        document.querySelectorAll(`.control div#${resumeClass}>.rows>.row`).forEach((row) => {
+            if (targetRow) {
+                const resumeYear = row.querySelector('input[name="resume-year"]').value;
+                targetRow.querySelector('.resume-year').innerText = resumeYear.length > 0 ? resumeYear + ' 年' : '';
+                targetRow.querySelector('.resume-month').innerText = row.querySelector('input[name="resume-month"]').value;
+                targetRow.querySelector('.resume-text').innerText = row.querySelector('input[name="resume-text"]').value;
+                targetRow.querySelector('.resume-text').style['text-align'] = row.querySelector('button[role="textAlignRight"]').dataset.right == 'true' ? 'right' : 'inherit';
 
-                                    if (data[tableSelector]['rows'].length > i) {
-                                        // 値
-                                        if (headerSelector in data[tableSelector]['rows'][i]) {
-                                            elem.innerText = data[tableSelector]['rows'][i][headerSelector];
-                                        } else {
-                                            elem.innerHTML = '&nbsp;';
-                                        }
+                targetRow = targetRow.nextElementSibling;
+            }
+        });
+    },
 
-                                        // 個別スタイル
-                                        if ('styles' in data[tableSelector]['rows'][i]) {
-                                            Object.keys(data[tableSelector]['rows'][i]['styles']).forEach(key => {
-                                                elem.style[key] = data[tableSelector]['rows'][i]['styles'][key];
-                                            })
-                                        }
-                                    }
-                                    header.append(elem);
-                                })
-                                offset++;
-                                numRows++;
-                            }
+    clearAll() {
+        const keys = [
+            'resume-date',
+            'resume-name-kana',
+            'resume-name',
+            // 'resume-gender',
+            'resume-birthday',
+            'resume-postalcode',
+            'resume-address-kana',
+            'resume-address',
+            'resume-email',
+            'resume-tel',
+            'resume-mobile',
+            'resume-contact-postalcode',
+            'resume-contact-address-kana',
+            'resume-contact-address',
+            'resume-contact-tel',
+            'resume-motivation',
+            'resume-wish',
+        ];
+
+        // text
+        keys.forEach((key) => {
+            const selector = `.control input#${key}[type="text"], .control textarea#${key}`;
+            const input = document.querySelector(selector);
+            if (input) {
+                input.value = '';
+                input.dispatchEvent(new Event('input', { bubbles: true }))
+            }
+        });
+
+        // radio
+        document.querySelectorAll('.control input[name="resume-gender"][type="radio"]').forEach((input) => {
+            if (input.value == '0') {
+                input.checked = true;
+            } else {
+                input.checked = false;
+            }
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+        });
+
+        // table
+        ['resume-history', 'resume-license'].forEach((key) => {
+            document.querySelector(`.control div#${key}>.rows`).innerHTML = '';
+            this.applyTableData(key);
+        });
+
+        // 証明写真
+        const imagePreview = document.querySelector('.resume .resume-photo-img');
+        imagePreview.innerHTML = '';
+    },
+
+    /**
+     * アップロードされた画像を Data URI スキームとして取得する準備
+     */
+    prepareForUploadIdPhotoImage() {
+        const imageUpload = document.getElementById('imageUpload');
+        const imagePreview = document.querySelector('.resume-photo-img');
+
+        imageUpload.addEventListener('change', function (event) {
+            const file = event.target.files[0]; // 選択された最初のファイルを取得
+            if (file) {
+                // ファイルが存在する場合、FileReader を使って Data URI を読み込む
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    // 読み込みが完了したら、e.target.result に Data URI が格納される
+                    const dataUri = e.target.result;
+
+                    // console.log("Data URI:", dataUri);
+
+                    // アスペクト比を 3:4 としてトリミング
+                    const img = new Image();
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    img.style.display = 'none';
+                    canvas.style.display = 'none';
+                    document.body.appendChild(img);
+                    document.body.appendChild(canvas);
+
+                    img.onload = function () {
+                        const mimeType = 'image/png';
+                        // canvas.width = img.naturalWidth;
+                        // canvas.height = img.naturalHeight;
+
+                        let offsetWidth = 0;
+                        let offsetHeight = 0;
+                        let cropedWidth = img.naturalWidth;
+                        let cropedHeight = img.naturalHeight;
+                        if (img.naturalWidth / img.naturalHeight >= (3 / 4)) {
+                            // 3/4よりも横長 or 長方形
+                            cropedWidth = Math.ceil(img.naturalHeight * (3 / 4));
+                            offsetWidth = Math.ceil((img.naturalWidth - cropedWidth) / 2);
+                        } else {
+                            // 3/4よりも縦長
+                            cropedHeight = Math.ceil(img.naturalWidth * (4 / 3));
+                            offsetHeight = Math.ceil((img.naturalHeight - cropedHeight) / 2);
                         }
+
+                        // console.log([offsetWidth, offsetHeight, cropedWidth, cropedHeight]);
+
+                        // 354 x 472 で保存する (dataUri が長くなりすぎないように)
+                        canvas.width = 354;
+                        canvas.height = 472;
+                        ctx.drawImage(img, offsetWidth, offsetHeight, cropedWidth, cropedHeight, 0, 0, 354, 472);
+                        const dataUri = canvas.toDataURL(mimeType);
+
+                        imagePreview.innerHTML = '';
+                        const photoImage = document.createElement('img');
+                        photoImage.src = dataUri;
+                        imagePreview.append(photoImage);
+
+                        // 不要になった要素を削除
+                        document.body.removeChild(img);
+                        document.body.removeChild(canvas);
+                    }
+
+                    img.src = dataUri;
+                }
+
+                reader.onerror = function (error) {
+                    console.error("Error reading file:", error);
+                }
+
+                // ファイルを Data URI スキームとして読み込む
+                reader.readAsDataURL(file);
+            } else {
+                // ファイルが選択されなかった場合の処理
+                imagePreview.innerHTML = '';
+            }
+        });
+    },
+
+    /**
+     * アップロードされた JSON を読み込む準備
+     */
+    prepareForUploadJson() {
+        const self = this;
+        const jsonUpload = document.getElementById('jsonUpload');
+
+        jsonUpload.addEventListener('change', function (event) {
+            const file = event.target.files[0]; // 選択された最初のファイルを取得
+
+            if (file) {
+                // ファイルが存在する場合、FileReader を使ってテキストとして読み込む
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    try {
+                        // 読み込んだテキストを JSON としてパースする
+                        const jsonData = JSON.parse(e.target.result);
+                        // console.log("展開された JSON データ:", Object.keys(jsonData));
+                        self.applyData(jsonData);
+
+                    } catch (error) {
+                        console.error("JSON ファイルのパースに失敗しました:", error);
+                        // outputDiv.textContent = "有効な JSON ファイルを選択してください。";
                     }
                 }
-            })
-        }
-    })
 
-    if (showContact) {
-        contactClasses.forEach((contactClass, index) => {
-            const elem = pageContent.querySelector(`.${contactClass}`);
-            if (elem) {
-                elem.hidden = false;
+                reader.onerror = function (error) {
+                    console.error("ファイルの読み込みに失敗しました:", error);
+                    // outputDiv.textContent = "ファイルの読み込みに失敗しました。";
+                }
+
+                // ファイルをテキストとして読み込む
+                reader.readAsText(file);
+            } else {
+                // outputDiv.textContent = "ファイルが選択されていません。";
             }
-        })
-    }
+        });
+    },
 }

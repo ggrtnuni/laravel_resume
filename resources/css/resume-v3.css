@@ -9,17 +9,6 @@ body {
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-
-    min-height: 100%;
-    position: relative;
-    margin: 0;
-    line-height: inherit;
-}
-
-.container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
 }
 
 .container * {
@@ -38,6 +27,19 @@ body {
     height: 297mm;
     border: white solid 1px;
     /* 囲わないと印刷範囲がおかしくなる (chrome 134.0.6998.88) */
+    /* border: green solid 1px; */
+}
+
+/* コントロールコンテンツ */
+.control {
+    margin-top: 18mm;
+    position: relative;
+}
+
+.control-wide {
+    max-width: 254mm;
+    margin-left: 18mm;
+    margin-right: 18mm;
 }
 
 /* ページコンテンツ */
@@ -392,10 +394,6 @@ body {
 }
 
 /* テーブル：学歴・職歴 */
-.page-content .resume-history>.table-header>div {
-    top: 90mm;
-}
-
 .page-content .resume-history>.table-header>.resume-year,
 .page-content .resume-history>.table-body>.row>.resume-year {
     left: 0;
@@ -423,10 +421,6 @@ body {
 }
 
 /* テーブル：学歴・職歴 */
-.page-content .resume-license>.table-header>div {
-    top: 0;
-}
-
 .page-content .resume-license>.table-header>.resume-year,
 .page-content .resume-license>.table-body>.row>.resume-year {
     left: 0;
@@ -513,12 +507,6 @@ body {
     /* 等幅フォントを指定 */
 }
 
-button[role="textAlignRight"][data-right="true"] {
-    background-color: #CCCCFF;
-}
-
-button[role="clearResume"],
-button[role="deleteRow"],
-button[role="deleteAllRow"] {
-    background-color: #FFCCCC;
+.card-without-contact {
+    border-bottom: black solid 2px;
 }

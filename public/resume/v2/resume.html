@@ -2,6 +2,8 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>履歴書</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,71 +18,61 @@
         <article class="resume">
             <div class="page">
                 <div class="page-content">
-                    <div class="resume-photo-img" style="background-color: #DDD">
-                        <img src="/sample/images/20250313-id-photo.jpg" alt="id photo" />
-                    </div>
+                    <div class="resume-photo-img"></div>
 
                     <section class="panel resume-info-meta">
-                        <div class="card resume-title">
-                            <h1>履歴書</h1>
-                        </div>
-                        <div class="card resume-date">
-                            <div>
-                                -
-                            </div>
-                        </div>
+                        <h1 class="resume-title">履歴書</h1>
+                        <div class="resume-date"></div>
                     </section>
 
                     <section class="panel resume-info-general">
                         <div class="card resume-name-kana">
                             <h2>ふりがな</h2>
-                            <div>-</div>
+                            <div></div>
                         </div>
                         <div class="card resume-name">
                             <h2>氏名</h2>
-                            <div>-</div>
+                            <div></div>
                         </div>
                         <div class="card resume-gender">
                             <h2>性別</h2>
-                            <div>-</div>
+                            <div></div>
                         </div>
                         <div class="card resume-birthday">
                             <h2>生年月日</h2>
-                            <div>-</div>
+                            <div></div>
                         </div>
                         <div class="card resume-address-kana">
                             <h2>ふりがな</h2>
-                            <div>-</div>
+                            <div></div>
                         </div>
                         <div class="card resume-address">
                             <h2>現住所</h2>
-                            <div>
-                                -
-                            </div>
+                            <div class="pre-like"></div>
                         </div>
                         <div class="card resume-email">
                             <h2>E-mail</h2>
-                            <div>-</div>
+                            <div></div>
                         </div>
                         <div class="card resume-tel">
                             <h2>自宅電話</h2>
-                            <div>-</div>
+                            <div></div>
                         </div>
                         <div class="card resume-mobile">
                             <h2>携帯電話</h2>
-                            <div>-</div>
+                            <div></div>
                         </div>
-                        <div class="card resume-contact-address-kana" hidden>
+                        <div class="card resume-contact-address-kana">
                             <h2>ふりがな</h2>
-                            <div>-</div>
+                            <div></div>
                         </div>
-                        <div class="card resume-contact-address" hidden>
+                        <div class="card resume-contact-address">
                             <h2>連絡先</h2>
-                            <div>-</div>
+                            <div class="pre-like"></div>
                         </div>
-                        <div class="card resume-contact-tel" hidden>
+                        <div class="card resume-contact-tel">
                             <h2>連絡先電話</h2>
-                            <div>-</div>
+                            <div></div>
                         </div>
                     </section>
 
@@ -91,6 +83,7 @@
                                 <div class="resume-month">月</div>
                                 <div class="resume-text">学歴・職歴</div>
                             </div>
+                            <div class="table-body"></div>
                         </div>
                     </section>
                 </div>
@@ -105,20 +98,21 @@
                                 <div class="resume-month">月</div>
                                 <div class="resume-text">免許・資格</div>
                             </div>
+                            <div class="table-body"></div>
                         </div>
                     </section>
 
                     <section class="panel resume-info-motivation">
                         <div class="card resume-motivation">
                             <h2>志望の動機、特技、好きな学科、アピールポイントなど</h2>
-                            <div>-</div>
+                            <div class="pre-like"></div>
                         </div>
                     </section>
 
                     <section class="panel resume-info-wish">
                         <div class="card resume-wish">
                             <h2>本人希望記入欄（特に給料・職種・勤務時間・勤務地・その他についての希望などがあれば記入）</h2>
-                            <div>-</div>
+                            <div class="pre-like"></div>
                         </div>
                     </section>
                 </div>
@@ -133,32 +127,34 @@
                 </div>
                 <hr />
                 <div style="font-size: 9pt;margin-bottom: 6mm;">
-                    <button onclick="print()">印刷</button>
-                    <button>保存</button>
-                    <button>読込</button>
-                    <button>消去</button>
+                    <button type="button" role="printResume" onclick="print()">印刷</button>
+                    <button type="button" role="downloadResume" onclick="window.resumeV2.downloadJSON()">保存
+                        (JSON)</button>
+                    <button type="button" role="clearResume"
+                        onclick="if (confirm('記載した履歴書の情報を削除しますか？')) {window.resumeV2.clearAll()}">消去</button>
                 </div>
-                <hr />
-                <div style="font-size: 9pt;margin-bottom: 6mm;">
-                    <div>
-                        <div><label for="resume-gender">年表記</label></div>
-                        <div>
-                            <input type="radio" name="resume-calender" value="1" id="resume-calender-en" checked />
-                            <label for="resume-calender-en">西暦</label>
-                            &nbsp;
-                            <input type="radio" name="resume-calender" value="2" id="resume-calender-jp" />
-                            <label for="resume-calender-jp">和暦</label>
-                        </div>
-                    </div>
-                    <div>
-                        <div><label for="resume-gender">連絡先</label></div>
-                        <div>
-                            <input type="checkbox" name="resume-contact" value="1" id="resume-contact" checked />
-                            <label for="resume-contact">表示する</label>
-                        </div>
-                    </div>
+            </div>
+            <hr />
+            <div style="font-size: 9pt;margin-bottom: 6mm;">
+                <div style="font-weight: bold;">読込 (JSON)</div>
+                <div>
+                    <input type="file" id="jsonUpload" accept="application/json">
                 </div>
-                <hr />
+            </div>
+            <hr />
+            <div style="font-size: 9pt;margin-bottom: 6mm;">
+                <div style="font-weight: bold;">証明写真</div>
+                <div>
+                    <input type="file" id="imageUpload" accept="image/*">
+                </div>
+            </div>
+            <hr />
+            <div style="font-size: 9pt;margin-bottom: 6mm;">
+                <div style="font-weight: bold;">基本情報</div>
+                <div>
+                    <div><label for="resume-date">記入日</label></div>
+                    <div><input type="text" id="resume-date" /></div>
+                </div>
                 <div>
                     <div><label for="resume-name-kana">氏名ふりがな</label></div>
                     <div><input type="text" id="resume-name-kana" /></div>
@@ -173,7 +169,7 @@
                         <input type="radio" name="resume-gender" value="0" id="resume-gender-0" />
                         <label for="resume-gender-0">未回答</label>
                         &nbsp;
-                        <input type="radio" name="resume-gender" value="1" id="resume-gender-1" checked />
+                        <input type="radio" name="resume-gender" value="1" id="resume-gender-1" />
                         <label for="resume-gender-1">男</label>
                         &nbsp;
                         <input type="radio" name="resume-gender" value="2" id="resume-gender-2" />
@@ -190,7 +186,7 @@
                 </div>
                 <div>
                     <div><label for="resume-address">郵便番号</label></div>
-                    <div><input type="text" id="resume-postal-code" /></div>
+                    <div><input type="text" id="resume-postalcode" /></div>
                 </div>
                 <div>
                     <div><label for="resume-address">住所</label></div>
@@ -208,73 +204,99 @@
                     <div><label for="resume-mobile">携帯電話</label></div>
                     <div><input type="text" id="resume-mobile" /></div>
                 </div>
-            </div>
-
-            <div style="font-size: 9pt;margin-bottom: 6mm;">
                 <div>
-                    <div><label for="resume-history">学歴・職歴</label></div>
-                    <div>
-                        <div style="display: inline-flex;">
-                            <input type="text" style="width: 10mm" />
-                            <input type="text" style="width: 10mm" />
-                            <input type="text" style="width: 30mm" />
-                            <button>x</button>
-                            <button>↑</button>
-                            <button>↓</button>
-                        </div>
-                        <div style="display: inline-flex;">
-                            <input type="text" style="width: 10mm" />
-                            <input type="text" style="width: 10mm" />
-                            <input type="text" style="width: 30mm" />
-                            <button>x</button>
-                            <button>↑</button>
-                            <button>↓</button>
-                        </div>
-                        <div>
-                            <button>+</button>
-                        </div>
-                    </div>
+                    <div><label for="resume-contact-address">連絡先郵便番号</label></div>
+                    <div><input type="text" id="resume-contact-postalcode" /></div>
+                </div>
+                <div>
+                    <div><label for="resume-contact-address-kana">連絡先ふりがな</label></div>
+                    <div><input type="text" id="resume-contact-address-kana" /></div>
+                </div>
+                <div>
+                    <div><label for="resume-contact-address">連絡先</label></div>
+                    <div><input type="text" id="resume-contact-address" /></div>
+                </div>
+                <div>
+                    <div><label for="resume-contact-tel">連絡先電話</label></div>
+                    <div><input type="text" id="resume-contact-tel" /></div>
                 </div>
             </div>
+            <hr />
 
             <div style="font-size: 9pt;margin-bottom: 6mm;">
-                <div>
-                    <div><label for="resume-history">免許・資格</label></div>
-                    <div>
-                        <div style="display: inline-flex;">
-                            <input type="text" style="width: 10mm" />
-                            <input type="text" style="width: 10mm" />
-                            <input type="text" style="width: 30mm" />
-                            <button>x</button>
-                            <button>↑</button>
-                            <button>↓</button>
-                        </div>
-                        <div style="display: inline-flex;">
-                            <input type="text" style="width: 10mm" />
-                            <input type="text" style="width: 10mm" />
-                            <input type="text" style="width: 30mm" />
-                            <button>x</button>
-                            <button>↑</button>
-                            <button>↓</button>
-                        </div>
-                        <div>
-                            <button>+</button>
-                        </div>
+                <div id="resume-history">
+                    <label>学歴・職歴</label>
+                    <div style="display: inline-flex;">
+                        <button type="button" role="addRow" onclick="var p = this.parentNode.parentNode.querySelector('.rows'); 
+                            var t = this.parentNode.parentNode.querySelector('template'); 
+                            p.appendChild(t.content.cloneNode(true))">追加</button>
+                        <button type="button" role="applyRows"
+                            onclick="window.resumeV2.applyTableData('resume-history')">反映</button>
+                        <button type="button" role="deleteAllRow"
+                            onclick="this.parentNode.parentNode.querySelector('.rows').innerHTML = ''">全削除</button>
                     </div>
+                    <template>
+                        <div class="row" style="display: inline-flex;">
+                            <input type="text" name="resume-year" style="width: 10mm;" />
+                            <input type="text" name="resume-month" style="width: 10mm;" />
+                            <input type="text" name="resume-text" style="width: 30mm;" />
+                            <button type="button" role="upRow"
+                                onclick="var e = this.parentNode; var p = e.parentNode; var t = e.previousElementSibling; if (t) { p.insertBefore(e, t)}">↑</button>
+                            <button type="button" role="downRow"
+                                onclick="var e = this.parentNode; var p = e.parentNode; var t = e.nextElementSibling; if (t) { p.insertBefore(t, e)}">↓</button>
+                            <button type="button" role="textAlignRight" data-right="false"
+                                onclick="this.dataset.right = this.dataset.right == 'false' ? 'true' : 'false'">→</button>
+                            <button type="button" role="deleteRow" onclick="this.parentNode.remove();">x</button>
+                        </div>
+                    </template>
+                    <div class="rows"></div>
                 </div>
             </div>
+            <hr />
+
+            <div style="font-size: 9pt;margin-bottom: 6mm;">
+                <div id="resume-license">
+                    <label>免許・資格</label>
+                    <div style="display: inline-flex;">
+                        <button type="button" role="addRow" onclick="var p = this.parentNode.parentNode.querySelector('.rows'); 
+                            var t = this.parentNode.parentNode.querySelector('template'); 
+                            p.appendChild(t.content.cloneNode(true))">追加</button>
+                        <button type="button" role="applyRows"
+                            onclick="window.resumeV2.applyTableData('resume-licnese')">反映</button>
+                        <button type="button" role="deleteAllRow"
+                            onclick="this.parentNode.parentNode.querySelector('.rows').innerHTML = ''">全削除</button>
+                    </div>
+                    <template>
+                        <div class="row" style="display: inline-flex;">
+                            <input type="text" name="resume-year" style="width: 10mm;" />
+                            <input type="text" name="resume-month" style="width: 10mm;" />
+                            <input type="text" name="resume-text" style="width: 30mm;" />
+                            <button type="button" role="upRow"
+                                onclick="var e = this.parentNode; var p = e.parentNode; var t = e.previousElementSibling; if (t) { p.insertBefore(e, t)}">↑</button>
+                            <button type="button" role="downRow"
+                                onclick="var e = this.parentNode; var p = e.parentNode; var t = e.nextElementSibling; if (t) { p.insertBefore(t, e)}">↓</button>
+                            <button type="button" role="textAlignRight" data-right="false"
+                                onclick="this.dataset.right = this.dataset.right == 'false' ? 'true' : 'false'">→</button>
+                            <button type="button" role="deleteRow" onclick="this.parentNode.remove();">x</button>
+                        </div>
+                    </template>
+                    <div class="rows"></div>
+                </div>
+            </div>
+            <hr />
 
             <div style="font-size: 9pt;margin-bottom: 6mm;">
                 <div>
                     <div><label for="resume-motivation">志望動機</label></div>
-                    <div> <textarea rows="20" cols="25"></textarea></div>
+                    <div> <textarea id="resume-motivation" rows="20" cols="25"></textarea></div>
                 </div>
             </div>
+            <hr />
 
             <div style="font-size: 9pt;margin-bottom: 6mm;">
                 <div>
                     <div><label for="resume-wish">本人希望記入欄</label></div>
-                    <div> <textarea rows="20" cols="25"></textarea></div>
+                    <div> <textarea id="resume-wish" rows="20" cols="25"></textarea></div>
                 </div>
             </div>
 
@@ -283,20 +305,60 @@
     </div>
 
     <script type="module">
-        import { message, sayHello, applyLayout, fetchJSON } from './resume.js';
-        console.log(message);
-        sayHello('World');
+        import resumeV2 from './resume.js';
 
-        const jsonURL = '/sample/data/resume-v2.json';
-        fetchJSON(jsonURL)
-            .then(jsonData => {
-                if (jsonData) {
-                    document.querySelectorAll('.page-content').forEach(pageContent => {
-                        applyLayout(pageContent, jsonData);
-                    })
-                }
-            });
+        window.resumeV2 = resumeV2;
 
+        window.addEventListener('load', (ev) => {
+            let tableBody;
+
+            // 学歴・職歴
+            tableBody = document.querySelector('.resume-history .table-body');
+            for (let i = 0; i < 26; i++) {
+                const row = document.createElement('div');
+                row.classList.add('row');
+
+                ['resume-year', 'resume-month', 'resume-text'].forEach((colClass) => {
+                    const col = document.createElement('div');
+                    col.classList.add(colClass);
+                    col.style.top = String(96 + 6 * i) + 'mm';
+                    row.appendChild(col);
+                });
+
+                tableBody.appendChild(row);
+            }
+
+            // 免許・資格
+            tableBody = document.querySelector('.resume-license .table-body');
+            for (let i = 0; i < 10; i++) {
+                const row = document.createElement('div');
+                row.classList.add('row');
+
+                ['resume-year', 'resume-month', 'resume-text'].forEach((colClass) => {
+                    const col = document.createElement('div');
+                    col.classList.add(colClass);
+                    col.style.top = String(6 + 6 * i) + 'mm';
+                    row.appendChild(col);
+                });
+
+                tableBody.appendChild(row);
+            }
+
+            // データのロード (テスト)
+            // const jsonURL = '/sample/data/resume-v3.json';
+            // window.resumeV2.fetchJSON(jsonURL)
+            //     .then(jsonData => {
+            //         if (jsonData) {
+            //             window.resumeV2.applyData(jsonData);
+            //         }
+            //     });
+
+            // 証明写真画像アップロードの仕込み
+            window.resumeV2.prepareForUploadIdPhotoImage();
+
+            // JSON 読込の仕込み
+            window.resumeV2.prepareForUploadJson();
+        });
     </script>
 </body>
 

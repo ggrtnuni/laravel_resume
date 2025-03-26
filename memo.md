@@ -2,7 +2,16 @@
 
 ## コントローラ生成
 
-./vendor/bin/sail artisan make:controller Manage\\LoginController
+./vendor/bin/sail artisan make:controller Resume\\ResumeController
+
+## js モジュールをインポートすると lightningCSS でエラーが起きる場合の応急処置
+
+../pkg がない、というエラーが出る。
+とりあえず、下記を行えばエラーは出なくなるが、ちゃんとした解決方法は不明。
+
+```bash
+touch node_modules/lightningcss/pkg
+```
 
 ## 参考サイト
 

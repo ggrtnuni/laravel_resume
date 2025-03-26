@@ -28,10 +28,6 @@ body {
     box-sizing: border-box;
 }
 
-.resume {
-    width: 210mm;
-}
-
 /* ページ全体 */
 .page {
     width: 210mm;
@@ -410,16 +406,11 @@ body {
     text-align: center;
 }
 
-.page-content .resume-history>.table-header>.resume-text {
-    left: calc(24mm + 12mm);
-    width: calc(174mm - 36mm);
-    text-align: center;
-}
-
+.page-content .resume-history>.table-header>.resume-text,
 .page-content .resume-history>.table-body>.row>.resume-text {
     left: calc(24mm + 12mm);
     width: calc(174mm - 36mm);
-    text-align: left;
+    text-align: center;
 }
 
 /* テーブル：学歴・職歴 */
@@ -434,11 +425,16 @@ body {
     text-align: center;
 }
 
-.page-content .resume-license>.table-header>.resume-month,
-.page-content .resume-license>.table-body>.row>.resume-month {
+.page-content .resume-license>.table-header>.resume-month {
     left: 24mm;
     width: 12mm;
     text-align: center;
+}
+
+.page-content .resume-license>.table-body>.row>.resume-month {
+    left: 24mm;
+    width: 12mm;
+    text-align: left;
 }
 
 .page-content .resume-license>.table-header>.resume-text {
@@ -511,14 +507,4 @@ body {
     /* 空白と改行を保持し、必要に応じて折り返す */
     /* font-family: monospace; */
     /* 等幅フォントを指定 */
-}
-
-button[role="textAlignRight"][data-right="true"] {
-    background-color: #CCCCFF;
-}
-
-button[role="clearResume"],
-button[role="deleteRow"],
-button[role="deleteAllRow"] {
-    background-color: #FFCCCC;
 }
