@@ -21,10 +21,10 @@
   <div class="bg-white">
 
     <!-- Header Content -->
-    <header class="no-print">
-      <div class="mx-auto flex max-w-7xl items-center justify-between py-6 px-2">
+    <header>
+      <div class="mx-auto flex max-w-7xl items-center justify-between py-6 px-6">
         <div class="flex items-center gap-4 sm:gap-5">
-          <a href="/resume/v3" class="text-lg text-gray-700 hover:text-gray-800 active:text-gray-500">ツール</a>
+          <a href="#" class="text-lg text-gray-700 hover:text-gray-800 active:text-gray-500">TOOL</a>
         </div>
 
         <a href="https://github.com/ggrtnuni" target="_blank">

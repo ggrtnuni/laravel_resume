@@ -15,7 +15,7 @@
 
           <section class="panel resume-info-general">
             <x-resume.card model="resumeNameKana" class="resume-name-kana" label="ふりがな" value="-" />
-            <x-resume.card model="resumeName" class="resume-name" label="氏名" value="-" model="resumeName" />
+            <x-resume.card model="resumeName" class="resume-name" label="氏名" value="-" />
             <x-resume.card model="resumeGenderText" class="resume-gender" label="性別" value="-" />
             <x-resume.card model="resumeBirthdayText" class="resume-birthday" label="生年月日" value="-" />
             <x-resume.card model="resumeAddressKana" class="resume-address-kana" label="ふりがな" value="-" />
