@@ -4,13 +4,13 @@
       items: [{
               name: '履歴書 V5',
               desc: 'next15 + typescript + tailwindcss + redux',
-              href: '../../dist/resume_v5/resume.html',
+              href: '/dist/resume_v5/resume.html',
               items: [],
           },
           {
               name: '履歴書 V4',
               desc: 'nuxt3 + typescript + tailwindcss',
-              href: '../../dist/resume_v4/resume/',
+              href: '/dist/resume_v4/resume/',
               items: [],
           },
           {
@@ -50,10 +50,15 @@
             <div>
               <template x-for="(item2, index2) in item.items">
                 <div>
-                  <a :href="item2.href" target="_blank">
-                    <span x-text="item2.name"
-                      class="text-xs text-green-500 hover:text-green-300 active:text-green-800"></span>
-                  </a>
+                  <div>
+                    <a :href="item2.href" target="_blank">
+                      <span x-text="item2.name"
+                        class="text-xs text-green-500 hover:text-green-300 active:text-green-800"></span>
+                    </a>
+                  </div>
+                  <div>
+                    <span x-text="item2.desc" class="text-xs text-gray-400"></span>
+                  </div>
                 </div>
               </template>
             </div>
