@@ -18,8 +18,8 @@
               desc: 'blade + tailwindcss + alpinejs',
               href: '{{ url('resume/v3/create') }}',
               items: [
-                  { name: '履歴書 V3 サンプルデータの JSON ファイル', desc: '生成 AI で作った仮想の人', href: '../resume/sample/resume-v3-example.json', items: [] },
-                  { name: '履歴書 V3 サンプルデータから印刷した PDF', desc: '', href: '../resume/sample/resume-v3-example.pdf', items: [] },
+                  { name: '履歴書 V3 サンプルデータの JSON ファイル', desc: '生成 AI で作った仮想の人', href: '{{ url('resume/sample/resume-v3-example.json') }}', items: [] },
+                  { name: '履歴書 V3 サンプルデータから印刷した PDF', desc: '', href: '{{ url('resume/sample/resume-v3-example.pdf') }}', items: [] },
               ],
           },
           {
